@@ -12,6 +12,8 @@ struct MathX_macOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+        }.commands {
+            SidebarCommands()
         }
     }
 }
