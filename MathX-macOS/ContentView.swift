@@ -122,6 +122,7 @@ struct StudentView: View {
         answer = ""
         currentQuestion += 1
         if currentQuestion >= quiz.questions.count {
+            // TODO: -- loops around, make a finished screen
             currentQuestion = 0
             score = 0
         }
