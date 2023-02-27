@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct MathX_macOSApp: App {
+    
+    @State var toggleSidebar = false
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-        }.commands {
-            SidebarCommands()
         }
     }
 }

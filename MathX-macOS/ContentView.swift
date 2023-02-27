@@ -7,22 +7,188 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Quiz {
+    let title: String
+    let questions: [Question]
+}
+
+struct Question {
+    let prompt: String
+    let answer: String
+}
+
+class QuizStore: ObservableObject {
+    @Published var quizzes: [Quiz] = []
+}
+
+struct TeacherView: View {
+    @ObservedObject var quizStore: QuizStore
+    @State private var quizTitle = ""
+    @State private var prompt = ""
+    @State private var answer = ""
+    @State private var questions: [Question] = []
+    
     var body: some View {
-        NavigationView {
-            Text("Sidebar")
-            Text("Content")
-        }.toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button(action: toggleSidebar, label: { // 1
-                    Image(systemName: "sidebar.leading")
-                })
+        VStack(spacing: 20) {
+            Text("Create a Quiz")
+                .font(.largeTitle)
+            TextField("Quiz Title", text: $quizTitle)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Divider()
+            List {
+                ForEach(questions, id: \.prompt) { question in
+                    HStack {
+                        Text(question.prompt)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
+                        Text(question.answer)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                HStack {
+                    TextField("Prompt", text: $prompt)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextField("Answer", text: $answer)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button(action: addQuestion) {
+                        Text("Add Question")
+                    }
+                }
+                .padding()
             }
+            Divider()
+            Button(action: saveQuiz) {
+                Text("Save Quiz")
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
         }
+        .padding()
     }
     
-    private func toggleSidebar() {
-        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    func addQuestion() {
+        questions.append(Question(prompt: prompt, answer: answer))
+        prompt = ""
+        answer = ""
+    }
+    
+    func saveQuiz() {
+        let quiz = Quiz(title: quizTitle, questions: questions)
+        quizStore.quizzes.append(quiz)
+        quizTitle = ""
+        questions = []
+    }
+}
+
+struct StudentView: View {
+    let quiz: Quiz
+    @State private var currentQuestion = 0
+    @State private var answer = ""
+    @State private var score = 0
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(quiz.title)
+                .font(.largeTitle)
+            Divider()
+            Text(quiz.questions[currentQuestion].prompt)
+                .font(.title)
+                .padding()
+            TextField("Answer", text: $answer)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Button(action: checkAnswer) {
+                Text("Submit")
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+            Spacer()
+            Text("Score: \(score)")
+                .font(.title)
+                .padding()
+        }
+        .frame(minWidth: 300, minHeight: 300)
+    }
+    
+    func checkAnswer() {
+        let question = quiz.questions[currentQuestion]
+        if answer == question.answer {
+            score += 1
+        }
+        answer = ""
+        currentQuestion += 1
+        if currentQuestion >= quiz.questions.count {
+            currentQuestion = 0
+            score = 0
+        }
+    }
+}
+
+struct ContentView: View {
+    @ObservedObject var quizStore = QuizStore()
+    @State private var isTeacherView = true
+    @State private var selectedQuiz: Quiz?
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                if isTeacherView {
+                    TeacherView(quizStore: quizStore)
+                } else {
+                    QuizListView(quizzes: quizStore.quizzes) { quiz in
+                        selectedQuiz = quiz
+                    }
+                }
+                Spacer()
+                HStack {
+                    Button(action: {
+                        isTeacherView = true
+                        selectedQuiz = nil
+                    }) {
+                        Text("Teacher View")
+                            .foregroundColor(isTeacherView ? .white : .black)
+                    }
+                    .padding()
+                    .background(isTeacherView ? Color.blue : Color.gray)
+                    .cornerRadius(10)
+                    Spacer()
+                    Button(action: {
+                        isTeacherView = false
+                        selectedQuiz = nil
+                    }) {
+                        Text("Student View")
+                            .foregroundColor(isTeacherView ? .black : .white)
+                    }
+                    .padding()
+                    .background(isTeacherView ? Color.gray : Color.blue)
+                    .cornerRadius(10)
+                }
+                .padding()
+            }
+            .navigationTitle(selectedQuiz == nil ? "Math Quiz" : selectedQuiz!.title)
+        }
+    }
+}
+
+struct QuizListView: View {
+    let quizzes: [Quiz]
+    let didSelectQuiz: (Quiz) -> Void
+    
+    var body: some View {
+        List(quizzes, id: \.title) { quiz in
+            NavigationLink(destination: StudentView(quiz: quiz)) {
+                HStack {
+                    Text(quiz.title)
+                        .font(.headline)
+                        .padding()
+                    Spacer()
+                }
+            }
+        }
     }
 }
 
