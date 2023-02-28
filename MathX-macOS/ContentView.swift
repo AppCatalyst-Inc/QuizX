@@ -59,11 +59,10 @@ struct TeacherView: View {
             Divider()
             Button(action: saveQuiz) {
                 Text("Save Quiz")
-                    .foregroundColor(.white)
             }
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(10)
+            .background(Color.red)
+            .frame(width: 150, height: 50)
+
         }
         .padding()
     }
@@ -88,59 +87,30 @@ struct StudentView: View {
     @State private var answer = ""
     @State private var score = 0
     
-    @State private var showingFinished = false
-    @State private var closeQuiz = false
-    
-    @State private var showingLeaveWarning = false
-    
-    @Environment(\.presentationMode) var presentationMode
-    
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                Text(quiz.title)
-                    .font(.largeTitle)
-                Divider()
-                Text(quiz.questions[currentQuestion].prompt)
-                    .font(.title)
-                    .padding()
-                TextField("Answer", text: $answer)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                Button(action: checkAnswer) {
-                    Text("Submit")
-                        .foregroundColor(.white)
-                }
+        VStack(spacing: 20) {
+            Text(quiz.title)
+                .font(.largeTitle)
+            Divider()
+            Text(quiz.questions[currentQuestion].prompt)
+                .font(.title)
                 .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
-                Spacer()
-                Text("Score: \(score)")
-                    .font(.title)
-                    .padding()
+            TextField("Answer", text: $answer)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Button(action: checkAnswer) {
+                Text("Submit")
+                    .foregroundColor(.white)
             }
-            .frame(minWidth: 300, minHeight: 300)
-            .sheet(isPresented: $showingFinished) {
-                FinishedView(score: $score, currentQuestion: $currentQuestion, closeQuiz: $closeQuiz)
-            }
-            .onChange(of: closeQuiz) { newValue in
-                presentationMode.wrappedValue.dismiss()
-            }
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button {
-                        showingLeaveWarning.toggle()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .alert("Are you sure you want to leave? Your work and score will NOT be saved.", isPresented: $showingLeaveWarning) {
-                        Button("Cancel", role: .cancel) { }
-                        Button("Leave", role: .destructive) {presentationMode.wrappedValue.dismiss()}
-                    }
-                }
-            }
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+            Spacer()
+            Text("Score: \(score)")
+                .font(.title)
+                .padding()
         }
+        .frame(minWidth: 300, minHeight: 300)
     }
     
     func checkAnswer() {
@@ -151,8 +121,9 @@ struct StudentView: View {
         answer = ""
         currentQuestion += 1
         if currentQuestion >= quiz.questions.count {
-            currentQuestion -= 1
-            showingFinished = true
+            // TODO: -- loops around, make a finished screen
+            currentQuestion = 0
+            score = 0
         }
     }
 }
@@ -179,56 +150,24 @@ struct ContentView: View {
                         selectedQuiz = nil
                     }) {
                         Text("Teacher View")
-                            .foregroundColor(isTeacherView ? .white : .black)
                     }
-                    .padding()
-                    .background(isTeacherView ? Color.blue : Color.gray)
-                    .cornerRadius(10)
+                    .background(isTeacherView ? Color.blue : Color.blue)
+                    .frame(width: 150, height: 50)
+                    
                     Spacer()
                     Button(action: {
                         isTeacherView = false
                         selectedQuiz = nil
                     }) {
                         Text("Student View")
-                            .foregroundColor(isTeacherView ? .black : .white)
                     }
-                    .padding()
-                    .background(isTeacherView ? Color.gray : Color.blue)
-                    .cornerRadius(10)
+                    .background(isTeacherView ? Color.blue : Color.blue)
+                    .frame(width: 150, height: 50)
                 }
                 .padding()
             }
-            .navigationTitle(selectedQuiz == nil ? "" : selectedQuiz!.title)
+            .navigationTitle(selectedQuiz == nil ? "Math Quiz" : selectedQuiz!.title)
         }
-    }
-}
-
-struct FinishedView: View {
-    
-    @Binding var score: Int
-    @Binding var currentQuestion: Int
-    @Binding var closeQuiz: Bool
-    
-    @Environment(\.presentationMode) var presentationMode
-
-    var body: some View {
-        VStack {
-            Text("Finished")
-                .font(.title)
-                .padding(.bottom, 5)
-            Text("Score: \(score)")
-                .font(.headline)
-                .fontWeight(.bold)
-                .padding(.bottom, 5)
-            Button {
-                score = 0
-                closeQuiz.toggle()
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("End")
-            }
-        }
-        .padding(100)
     }
 }
 
