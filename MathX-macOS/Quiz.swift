@@ -1,0 +1,219 @@
+//
+//  ContentView.swift
+//  MathX-macOS
+//
+//  Created by Tristan on 27/02/2023.
+//
+
+import SwiftUI
+
+struct Quiz {
+    let title: String
+    let questions: [Question]
+}
+
+struct Question {
+    let prompt: String
+    let answer: String
+}
+
+class QuizStore: ObservableObject {
+    @Published var quizzes: [Quiz] = []
+}
+
+struct TeacherView: View {
+    @ObservedObject var quizStore: QuizStore
+    @State private var quizTitle = ""
+    @State private var prompt = ""
+    @State private var answer = ""
+    @State private var questions: [Question] = []
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Create a Quiz")
+                .font(.largeTitle)
+            TextField("Quiz Title", text: $quizTitle)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Divider()
+            List {
+                ForEach(questions, id: \.prompt) { question in
+                    HStack {
+                        Text(question.prompt)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
+                        Text(question.answer)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                HStack {
+                    TextField("Prompt", text: $prompt)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextField("Answer", text: $answer)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button(action: addQuestion) {
+                        Text("Add Question")
+                    }
+                }
+                .padding()
+            }
+            Divider()
+            Button(action: saveQuiz) {
+                Text("Save Quiz")
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+        }
+        .padding()
+    }
+    
+    func addQuestion() {
+        questions.append(Question(prompt: prompt, answer: answer))
+        prompt = ""
+        answer = ""
+    }
+    
+    func saveQuiz() {
+        let quiz = Quiz(title: quizTitle, questions: questions)
+        quizStore.quizzes.append(quiz)
+        quizTitle = ""
+        questions = []
+    }
+}
+
+struct QuizListView: View {
+    let quizzes: [Quiz]
+    let didSelectQuiz: (Quiz) -> Void
+    
+    var body: some View {
+        if quizzes.count > 0 {
+            List(quizzes, id: \.title) { quiz in
+                NavigationLink(destination: AnswerView(quiz: quiz)) {
+                    HStack {
+                        Text(quiz.title)
+                            .font(.headline)
+                            .padding()
+                        Spacer()
+                    }
+                }
+            }
+        } else {
+            HStack {
+                Spacer()
+                Text("There are no quizzes available.")
+                Spacer()
+            }
+        }
+    }
+}
+
+struct AnswerView: View {
+    let quiz: Quiz
+    @State private var currentQuestion = 0
+    @State private var answer = ""
+    @State private var score = 0
+    
+    @State private var showingFinished = false
+    @State private var closeQuiz = false
+    
+    @State private var showingLeaveWarning = false
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 20) {
+                Text(quiz.title)
+                    .font(.largeTitle)
+                Divider()
+                Text(quiz.questions[currentQuestion].prompt)
+                    .font(.title)
+                    .padding()
+                TextField("Answer", text: $answer)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                Button(action: checkAnswer) {
+                    Text("Submit")
+                        .foregroundColor(.white)
+                }
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+                Spacer()
+                Text("Score: \(score)")
+                    .font(.title)
+                    .padding()
+            }
+            .frame(minWidth: 300, minHeight: 300)
+            .sheet(isPresented: $showingFinished) {
+                FinishedView(score: $score, currentQuestion: $currentQuestion, closeQuiz: $closeQuiz)
+            }
+            .onChange(of: closeQuiz) { newValue in
+                presentationMode.wrappedValue.dismiss()
+            }
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button {
+                        showingLeaveWarning.toggle()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                    }
+                    .alert("Are you sure you want to leave? Your work and score will NOT be saved.", isPresented: $showingLeaveWarning) {
+                        Button("Cancel", role: .cancel) { }
+                        Button("Leave", role: .destructive) {presentationMode.wrappedValue.dismiss()}
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkAnswer() {
+        let question = quiz.questions[currentQuestion]
+        if answer == question.answer {
+            score += 1
+        }
+        answer = ""
+        currentQuestion += 1
+        if currentQuestion >= quiz.questions.count {
+            currentQuestion -= 1
+            showingFinished = true
+        }
+    }
+}
+
+struct FinishedView: View {
+    
+    @Binding var score: Int
+    @Binding var currentQuestion: Int
+    @Binding var closeQuiz: Bool
+    
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        VStack {
+            Text("Finished")
+                .font(.title)
+                .padding(.bottom, 5)
+            Text("Score: \(score)")
+                .font(.headline)
+                .fontWeight(.bold)
+                .padding(.bottom, 5)
+            Button {
+                score = 0
+                closeQuiz.toggle()
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Submit and Close Quiz")
+            }
+        }
+        .padding(100)
+    }
+}
+
+struct Quiz_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("Quiz View")
+    }
+}

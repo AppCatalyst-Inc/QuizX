@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A6846B129AE5A130045FE82 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B029AE5A130045FE82 /* Sidebar.swift */; };
+		6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B229AE5A1E0045FE82 /* Quiz.swift */; };
 		6AABAED329AC9D3700982A2F /* MathX_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */; };
 		6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AABAED429AC9D3700982A2F /* ContentView.swift */; };
 		6AABAED729AC9D3900982A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AABAED629AC9D3900982A2F /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A6846B029AE5A130045FE82 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		6A6846B229AE5A1E0045FE82 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		6AABAECF29AC9D3700982A2F /* MathX-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MathX-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathX_macOSApp.swift; sourceTree = "<group>"; };
 		6AABAED429AC9D3700982A2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			children = (
 				6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */,
 				6AABAED429AC9D3700982A2F /* ContentView.swift */,
+				6A6846B029AE5A130045FE82 /* Sidebar.swift */,
+				6A6846B229AE5A1E0045FE82 /* Quiz.swift */,
 				6AABAED629AC9D3900982A2F /* Assets.xcassets */,
 				6AABAEDB29AC9D3900982A2F /* MathX_macOS.entitlements */,
 				6AABAED829AC9D3900982A2F /* Preview Content */,
@@ -140,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */,
+				6A6846B129AE5A130045FE82 /* Sidebar.swift in Sources */,
+				6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */,
 				6AABAED329AC9D3700982A2F /* MathX_macOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
