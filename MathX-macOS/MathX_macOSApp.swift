@@ -13,8 +13,15 @@ struct MathX_macOSApp: App {
     @State var toggleSidebar = false
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("") {
             ContentView()
+                .onAppear {
+                    NSApplication.shared.windows.forEach({ $0.tabbingMode = .disallowed })
+                }
+        }
+        .commands {
+            CommandGroup(replacing: CommandGroupPlacement.newItem) {
+            }
         }
     }
 }

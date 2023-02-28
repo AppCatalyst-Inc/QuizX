@@ -198,7 +198,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .navigationTitle(selectedQuiz == nil ? "Math Quiz" : selectedQuiz!.title)
+            .navigationTitle(selectedQuiz == nil ? "" : selectedQuiz!.title)
         }
     }
 }
