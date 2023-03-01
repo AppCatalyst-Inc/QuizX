@@ -12,46 +12,23 @@ struct MathX_macOSApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    @State var isSidebarVisible = true
-    
+    @State var currentTab: String = "person"
+
     var body: some Scene {
         WindowGroup {
-            ContentView(isSidebarVisible: $isSidebarVisible)
+            ContentView()
                 .focusable(false)
+                .background(Color("BG").ignoresSafeArea())
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
-                        Button {
-                            withAnimation {
-                                isSidebarVisible.toggle()
-                            }
-                        } label: {
-                            Image(systemName: "sidebar.left")
-                        }
+                        Text("")
                     }
-                }
-                .onAppear {
-                    NSApplication.shared.windows.forEach({ $0.tabbingMode = .disallowed })
                 }
         }
-        .windowStyle(.hiddenTitleBar)
-        .windowToolbarStyle(.unified)
+        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowToolbarStyle(UnifiedWindowToolbarStyle())
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-            }
-            
-            CommandMenu("Sidebar") {
-                Button {
-                    withAnimation {
-                        isSidebarVisible.toggle()
-                    }
-                } label: {
-                    if isSidebarVisible == false {
-                        Text("Show Sidebar")
-                    } else {
-                        Text("Hide Sidebar")
-                    }
-                }
-                .keyboardShortcut("S")
             }
         }
     }

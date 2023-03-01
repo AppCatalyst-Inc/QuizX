@@ -10,39 +10,30 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var quizStore = QuizStore()
     @State private var selectedQuiz: Quiz?
-
-    @State var sidebarWidth: CGFloat = 150
-    @Binding var isSidebarVisible: Bool
         
-    @State var showingAnswerView = true
-    @State var showingTeacherView = false
-    @State var showingView3 = false
+    @State var currentTab: String = "person"
     
     var body: some View {
-        ZStack {
-            Color(NSColor.windowBackgroundColor)
+        ZStack(alignment: .leading) {
+            Color("BG")
             
             HStack {
                 withAnimation(.easeInOut(duration: 2)) {
                     VStack(alignment: .leading) {
-                        Sidebar(showingAnswerView: $showingAnswerView, showingTeacherView: $showingTeacherView, showingView3: $showingView3)
-                            .frame(width: isSidebarVisible ? 150 : 0)
-                            .offset(x: isSidebarVisible ? 0 : -sidebarWidth)
-                            .padding([.vertical, .leading], 5)
-                            
+                        Sidebar(currentTab: $currentTab)
                     }
                 }
                 
-                if showingAnswerView {
+                if currentTab == "person" {
                     QuizListView(quizzes: quizStore.quizzes) { quiz in
                         selectedQuiz = quiz
                     }
-                } else if showingTeacherView {
+                } else if currentTab == "pencil.and.ruler" {
                     TeacherView(quizStore: quizStore)
-                } else if showingView3 {
+                } else if currentTab == "gearshape" {
                     HStack {
                         Spacer()
-                        Text("This is View 3")
+                        Text("Settings/Profile View")
                         Spacer()
                     }
                 } else {
