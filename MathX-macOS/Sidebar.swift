@@ -11,6 +11,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     @State var tabs: Array = ["person", "pencil.and.ruler", "gearshape"]
+    @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
     @Namespace var animation
@@ -21,6 +22,15 @@ struct Sidebar: View {
                 Spacer()
                 ForEach(tabs, id: \.self) { image in
                     MenuButton(image: image)
+                        .onHover { state in
+                            withAnimation(.spring(response: 0.2)) {
+                                if state {
+                                    hoverImage = image
+                                } else {
+                                    hoverImage = ""
+                                }
+                            }
+                        }
                 }
                 Spacer()
             }
@@ -44,30 +54,44 @@ struct Sidebar: View {
     
     @ViewBuilder
     func MenuButton(image: String) -> some View {
-        Image(systemName: image)
+        Image(systemName: currentTab == image ? image + ".fill" : image)
             .resizable()
             .renderingMode(.template)
             .aspectRatio(contentMode: .fit)
-            .scaleEffect(currentTab == image ? 1.1 : 1)
+            .scaleEffect(currentTab == image ? 1.2 : 1)
             .foregroundColor(currentTab == image ? .primary : .gray)
             .frame(width: 22, height: 22)
-            .frame(width: 96, height: 70)
+            .frame(width: 96, height: 96)
+            .overlay(
+                HStack {
+                    if image == hoverImage {
+                        withAnimation {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.primary.opacity(0.2))
+                                .matchedGeometryEffect(id: "Hover", in: animation)
+                                .frame(width: image == currentTab ? 86 : 88, height: image == hoverImage ? 80 : 0)
+                                .offset(x: image == currentTab ? 4 : 0)
+                        }
+                    }
+                }
+                , alignment: image == currentTab ? .leading : .center
+            )
             .overlay(
                 HStack {
                     if currentTab == image {
                         Capsule()
                             .fill(Color.primary)
-                            .matchedGeometryEffect(id: "TAB", in: animation)
-                            .frame(width: 3, height: 50)
+                            .matchedGeometryEffect(id: "Tab", in: animation)
+                            .frame(width: 3, height: 80)
                             .offset(x: 2)
                     }
                 }
                 
-                ,alignment: .trailing
+                , alignment: .trailing
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                withAnimation(.spring()) {
+                withAnimation(.spring(response: 0.5)) {
                     currentTab = image
                 }
             }
