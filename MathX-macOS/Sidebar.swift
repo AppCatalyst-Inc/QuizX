@@ -54,13 +54,48 @@ struct Sidebar: View {
     
     @ViewBuilder
     func MenuButton(image: String) -> some View {
-        Image(systemName: currentTab == image ? image + ".fill" : image)
-            .resizable()
-            .renderingMode(.template)
-            .aspectRatio(contentMode: .fit)
-            .scaleEffect(currentTab == image ? 1.2 : 1)
-            .foregroundColor(currentTab == image ? .primary : .gray)
-            .frame(width: 22, height: 22)
+        VStack {
+            Image(systemName: currentTab == image ? image + ".fill" : image)
+                .resizable()
+                .renderingMode(.template)
+                .aspectRatio(contentMode: .fit)
+                .scaleEffect(currentTab == image ? 1.2 : 1)
+                .foregroundColor(currentTab == image ? .primary : .gray)
+                .frame(width: 22, height: 22)
+            if !hoverImage.isEmpty {
+                if image == "person" || image == "person.fill" {
+                    if hoverImage == "person" || hoverImage == "person.fill" {
+                        withAnimation {
+                            Text("Quizzes")
+                                .padding(.horizontal, 6)
+                                .multilineTextAlignment(.center)
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                    }
+                } else if image == "pencil.and.ruler" || image == "pencil.and.ruler.fill" {
+                    if hoverImage == "pencil.and.ruler" || hoverImage == "pencil.and.ruler.fill" {
+                        withAnimation {
+                            Text("Create Quiz")
+                                .padding(.horizontal, 6)
+                                .multilineTextAlignment(.center)
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                    }
+                } else if image == "gearshape" || image == "gearshape.fill" {
+                    if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
+                        withAnimation {
+                            Text("Settings")
+                                .padding(.horizontal, 6)
+                                .multilineTextAlignment(.center)
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
+            }
+        }
             .frame(width: 96, height: 96)
             .overlay(
                 HStack {
