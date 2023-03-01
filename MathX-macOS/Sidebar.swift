@@ -10,10 +10,8 @@ import SwiftUI
 struct Sidebar: View {
     
     @Binding var currentTab: String
-    @Binding var showSidebar: Bool
-    @Binding var pinSidebar: Bool
     
-    @State var tabs: Array = ["person", "pencil.and.ruler", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter","person", "pencil.and.ruler", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -52,13 +50,6 @@ struct Sidebar: View {
                 }
                     .ignoresSafeArea()
             )
-        }
-        .onHover { hover in // checks when mouse is no longer hovering over sidebar
-            if hover == false && showSidebar == true && pinSidebar == false {
-                withAnimation {
-                    showSidebar = false
-                }
-            }
         }
     }
     
@@ -99,6 +90,16 @@ struct Sidebar: View {
                     if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
                         withAnimation {
                             Text("Settings")
+                                .padding(.horizontal, 6)
+                                .multilineTextAlignment(.center)
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                    }
+                } else if image == "square.split.bottomrightquarter" || image == "square.split.bottomrightquarter.fill" {
+                    if hoverImage == "square.split.bottomrightquarter" || hoverImage == "square.split.bottomrightquarter.fill" {
+                        withAnimation {
+                            Text("Squares")
                                 .padding(.horizontal, 6)
                                 .multilineTextAlignment(.center)
                                 .font(.subheadline)
