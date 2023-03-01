@@ -19,8 +19,9 @@ struct MathX_macOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(pinSidebar: $pinSidebar, showSidebar: $showSidebar)
-                .focusable(false)
+                .focusable(false) // disables tab button from selecting items
                 .background(Color("BG").ignoresSafeArea())
+            // checks if sidebar is pinned and sets variable accordingly
                 .onChange(of: pinSidebar) { _ in
                     withAnimation {
                         if pinSidebar {
@@ -47,6 +48,7 @@ struct MathX_macOSApp: App {
             }
             
             CommandGroup(before: .sidebar) {
+                // pin/unpin sidebar command
                 Button(pinSidebar ? "Unpin Sidebar" : "Pin Sidebar") {
                     withAnimation {
                         pinSidebar.toggle()
@@ -54,6 +56,7 @@ struct MathX_macOSApp: App {
                 }
                 .keyboardShortcut("S", modifiers: [.command, .shift])
                 
+                // hide/show sidebar command
                 Button(showSidebar ? "Hide Sidebar" : "Show Sidebar") {
                     withAnimation {
                         showSidebar.toggle()

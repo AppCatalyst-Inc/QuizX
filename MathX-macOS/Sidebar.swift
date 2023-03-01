@@ -27,6 +27,7 @@ struct Sidebar: View {
                     MenuButton(image: image)
                         .onHover { state in
                             withAnimation(.spring(response: 0.2)) {
+                                // sets menubutton image to its corresponding image
                                 if state {
                                     hoverImage = image
                                 } else {
@@ -37,9 +38,10 @@ struct Sidebar: View {
                 }
                 Spacer()
             }
+            // width and height of sidebar
             .frame(width: 100)
             .frame(maxHeight: .infinity, alignment: .top)
-            .background(
+            .background( // sidebar rounding (top right and bottom right)
                 ZStack {
                     Color(NSColor.windowBackgroundColor)
                         .padding(.trailing, 30)
@@ -51,7 +53,7 @@ struct Sidebar: View {
                     .ignoresSafeArea()
             )
         }
-        .onHover { hover in
+        .onHover { hover in // checks when mouse is no longer hovering over sidebar
             if hover == false && showSidebar == true && pinSidebar == false {
                 withAnimation {
                     showSidebar = false
@@ -67,9 +69,11 @@ struct Sidebar: View {
                 .resizable()
                 .renderingMode(.template)
                 .aspectRatio(contentMode: .fit)
-                .scaleEffect(currentTab == image ? 1.2 : 1)
+                .scaleEffect(currentTab == image ? 1.2 : 1)  // scales icon of selected tab
                 .foregroundColor(currentTab == image ? .primary : .gray)
-                .frame(width: 22, height: 22)
+                .frame(width: 22, height: 22) // width and height of menu button
+            
+            // adds text to icons when hovered over
             if !hoverImage.isEmpty {
                 if image == "person" || image == "person.fill" {
                     if hoverImage == "person" || hoverImage == "person.fill" {
@@ -104,10 +108,10 @@ struct Sidebar: View {
                 }
             }
         }
-        .frame(width: 96, height: 96)
+        .frame(width: 96, height: 96) // width and height of usable sidebar space
         .overlay(
             HStack {
-                if image == hoverImage {
+                if image == hoverImage { // light gray background hovering effect
                     withAnimation {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(Color.primary.opacity(0.2))
@@ -119,7 +123,7 @@ struct Sidebar: View {
             }
             , alignment: image == currentTab ? .leading : .center
         )
-        .overlay(
+        .overlay( // capsule-line indicator to show current tab
             HStack {
                 if currentTab == image {
                     Capsule()
