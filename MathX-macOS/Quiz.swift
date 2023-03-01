@@ -98,6 +98,7 @@ struct QuizListView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
         } else {
             HStack {
                 Spacer()

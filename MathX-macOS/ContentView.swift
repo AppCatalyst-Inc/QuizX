@@ -10,17 +10,22 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var quizStore = QuizStore()
     @State private var selectedQuiz: Quiz?
-        
-    @State var currentTab: String = "person"
     
+    @Binding var pinSidebar: Bool
+    @Binding var showSidebar: Bool
+    
+    @State var currentTab: String = "person"
+        
     var body: some View {
         ZStack(alignment: .leading) {
             Color("BG")
             
             HStack {
-                withAnimation(.easeInOut(duration: 2)) {
-                    VStack(alignment: .leading) {
-                        Sidebar(currentTab: $currentTab)
+                VStack(alignment: .leading) {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        Sidebar(currentTab: $currentTab, showSidebar: $showSidebar, pinSidebar: $pinSidebar)
+                            .frame(width: showSidebar ? 100 : 0)
+                            .offset(x: showSidebar ? 0 : -100)
                     }
                 }
                 
@@ -46,6 +51,23 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 800, minHeight: 600)
+        .overlay(
+            EmptyView()
+                .frame(width: 10)
+                .frame(maxHeight: .infinity, alignment: .top)
+                .background(.clear)
+                .allowsHitTesting(true)
+                .onHover { hover in
+                    if hover == true && showSidebar == false && pinSidebar == false {
+                        withAnimation {
+                            showSidebar = hover
+                        }
+                    }
+                }
+                .ignoresSafeArea()
+
+            , alignment: .leading
+        )
     }
 }
 

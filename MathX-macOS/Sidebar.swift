@@ -10,6 +10,9 @@ import SwiftUI
 struct Sidebar: View {
     
     @Binding var currentTab: String
+    @Binding var showSidebar: Bool
+    @Binding var pinSidebar: Bool
+    
     @State var tabs: Array = ["person", "pencil.and.ruler", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
@@ -47,8 +50,13 @@ struct Sidebar: View {
                 }
                     .ignoresSafeArea()
             )
-            
-            
+        }
+        .onHover { hover in
+            if hover == false && showSidebar == true && pinSidebar == false {
+                withAnimation {
+                    showSidebar = false
+                }
+            }
         }
     }
     
@@ -96,51 +104,45 @@ struct Sidebar: View {
                 }
             }
         }
-            .frame(width: 96, height: 96)
-            .overlay(
-                HStack {
-                    if image == hoverImage {
-                        withAnimation {
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.primary.opacity(0.2))
-                                .matchedGeometryEffect(id: "Hover", in: animation)
-                                .frame(width: image == currentTab ? 86 : 88, height: image == hoverImage ? 80 : 0)
-                                .offset(x: image == currentTab ? 4 : 0)
-                        }
+        .frame(width: 96, height: 96)
+        .overlay(
+            HStack {
+                if image == hoverImage {
+                    withAnimation {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.primary.opacity(0.2))
+                            .matchedGeometryEffect(id: "Hover", in: animation)
+                            .frame(width: image == currentTab ? 86 : 88, height: image == hoverImage ? 80 : 0)
+                            .offset(x: image == currentTab ? 4 : 0)
                     }
-                }
-                , alignment: image == currentTab ? .leading : .center
-            )
-            .overlay(
-                HStack {
-                    if currentTab == image {
-                        Capsule()
-                            .fill(Color.primary)
-                            .matchedGeometryEffect(id: "Tab", in: animation)
-                            .frame(width: 3, height: 80)
-                            .offset(x: 2)
-                    }
-                }
-                
-                , alignment: .trailing
-            )
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.spring(response: 0.5)) {
-                    currentTab = image
                 }
             }
+            , alignment: image == currentTab ? .leading : .center
+        )
+        .overlay(
+            HStack {
+                if currentTab == image {
+                    Capsule()
+                        .fill(Color.primary)
+                        .matchedGeometryEffect(id: "Tab", in: animation)
+                        .frame(width: 3, height: 80)
+                        .offset(x: 2)
+                }
+            }
+            
+            , alignment: .trailing
+        )
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(.spring(response: 0.5)) {
+                currentTab = image
+            }
+        }
     }
 }
 
 struct Sidebar_Previews: PreviewProvider {
     static var previews: some View {
         Text("Sidebar View")
-    }
-}
-
-extension View {
-    func getRect() -> CGRect {
-        return NSScreen.main!.visibleFrame
     }
 }

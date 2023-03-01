@@ -11,17 +11,32 @@ import SwiftUI
 struct MathX_macOSApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @AppStorage("pinSidebar", store: .standard) var pinSidebar = true
     
-    @State var currentTab: String = "person"
+    @State var showSidebar = false
+    
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(pinSidebar: $pinSidebar, showSidebar: $showSidebar)
                 .focusable(false)
                 .background(Color("BG").ignoresSafeArea())
-                .toolbar {
-                    ToolbarItem(placement: .navigation) {
-                        Text("")
+                .onChange(of: pinSidebar) { _ in
+                    withAnimation {
+                        if pinSidebar {
+                            showSidebar = true
+                        } else {
+                            showSidebar = false
+                        }
+                    }
+                }
+                .onAppear {
+                    withAnimation {
+                        if pinSidebar {
+                            showSidebar = true
+                        } else {
+                            showSidebar = false
+                        }
                     }
                 }
         }
@@ -29,6 +44,25 @@ struct MathX_macOSApp: App {
         .windowToolbarStyle(UnifiedWindowToolbarStyle())
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
+            }
+            
+            CommandGroup(before: .sidebar) {
+                Button(pinSidebar ? "Unpin Sidebar" : "Pin Sidebar") {
+                    withAnimation {
+                        pinSidebar.toggle()
+                    }
+                }
+                .keyboardShortcut("S", modifiers: [.command, .shift])
+                
+                Button(showSidebar ? "Hide Sidebar" : "Show Sidebar") {
+                    withAnimation {
+                        showSidebar.toggle()
+                    }
+                }
+                .keyboardShortcut("S", modifiers: .command)
+                .disabled(pinSidebar)
+                
+                Divider()
             }
         }
     }
