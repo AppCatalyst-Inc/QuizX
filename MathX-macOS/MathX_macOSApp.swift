@@ -11,10 +11,13 @@ import SwiftUI
 struct MathX_macOSApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @FocusState var textfieldFocus
+    
+    @State var currentTab: String = "square.split.bottomrightquarter"
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(currentTab: currentTab, textfieldFocus: $textfieldFocus)
                 .focusable(false) // disables tab button from selecting items
                 .background(Color("BG").ignoresSafeArea())
         }

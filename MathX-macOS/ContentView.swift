@@ -11,8 +11,9 @@ struct ContentView: View {
     @ObservedObject var quizStore = QuizStore()
     @State private var selectedQuiz: Quiz?
     
-    @State var currentTab: String = "square.split.bottomrightquarter"
-        
+    @State var currentTab: String
+    @State var textfieldFocus: FocusState<Bool>.Binding
+
     var body: some View {
         ZStack(alignment: .leading) {
             Color("BG") // sets background to dark gray colour
@@ -36,7 +37,7 @@ struct ContentView: View {
                         Spacer()
                     }
                 } else if currentTab == "square.split.bottomrightquarter" {
-                    SquaresView()
+                    SquaresView(textfieldFocus: textfieldFocus)
                 } else {
                     HStack {
                         Spacer()
