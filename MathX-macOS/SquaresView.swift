@@ -10,6 +10,7 @@ import SwiftUI
 struct SquaresView: View {
     
     let squares = ["English": "books.vertical", "EMath": "sum", "AMath": "function", "Physics": "tree", "Chemistry": "atom", "Biology": "allergens", "Computing": "terminal", "Electronics": "bolt", "Biotech": "pills", "Design Studies": "paintbrush.pointed", "Chinese": "character.book.closed.zh", "Social Studies": "person.line.dotted.person", "Geography": "mountain.2", "History": "globe.asia.australia", "CCE": "building.2"]
+    let squaresColour = ["English": .blue, "EMath": .yellow, "AMath": .orange, "Physics": .purple, "Chemistry": .green, "Biology": .cyan, "Computing": .brown, "Electronics": .red, "Biotech": Color.green, "Design Studies": .pink, "Chinese": .red, "Social Studies": Color.indigo, "Geography": Color.mint, "History": Color.teal, "CCE": Color.gray]
     
     @State var searchSquares = String()
         
@@ -37,7 +38,7 @@ struct SquaresView: View {
                         ScrollView(showsIndicators: false) {
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 3), spacing: 30), count: 5), spacing: 30) {
                                 ForEach(searchSquaresResults.sorted(), id: \.self) { item in
-                                    SquaresCard(title: item, image: squares[item]!, cardWidth: cardWidth)
+                                    SquaresCard(title: item, image: squares[item]!, cardWidth: cardWidth, colour: squaresColour[item]!)
                                         .padding(.horizontal)
                                 }
                             }
@@ -104,6 +105,7 @@ struct SquaresCard: View {
     let title: String
     let image: String
     let cardWidth: CGFloat
+    let colour: Color
     
     @State var hovering = Bool()
     
@@ -125,7 +127,7 @@ struct SquaresCard: View {
                     }
                 }
                 .buttonStyle(.plain)
-                .background(Color.purple.opacity(0.3))
+                .background(colour.opacity(0.3))
                 .cornerRadius(16)
                 .padding(.horizontal, 1)
                 
@@ -144,7 +146,7 @@ struct SquaresCard: View {
                     }
                 }
                 .buttonStyle(.plain)
-                .background(Color.purple.opacity(0.3))
+                .background(colour.opacity(0.3))
                 .cornerRadius(16)
                 .padding(.horizontal, 1)
                 
@@ -197,9 +199,9 @@ struct SquaresCard: View {
         }
         .frame(width: cardWidth, height: cardWidth, alignment: .center)
         .padding(.vertical)
-        .background(.purple.opacity(0.5))
+        .background(colour.opacity(0.5))
         .cornerRadius(32)
-        .scaleEffect(hovering ? 1.02 : 1)
+        .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
             withAnimation(.easeOut) {
                 hovering = hover
