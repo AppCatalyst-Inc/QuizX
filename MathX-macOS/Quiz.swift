@@ -36,7 +36,7 @@ struct TeacherView: View {
             TextField("Quiz Title", text: $quizTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-                .background(Color.gray)
+                .background(Color.white.opacity(0.2))
                 .cornerRadius(10)
             Divider()
                 .background(Color.white)
@@ -45,48 +45,47 @@ struct TeacherView: View {
                     HStack {
                         Text(question.prompt)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.white)
                         Spacer()
                         Text(question.answer)
                             .frame(maxWidth: .infinity, alignment: .trailing)
+                            .foregroundColor(.white)
                     }
                 }
                 HStack {
                     TextField("Prompt", text: $prompt)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .background(Color.gray)
+                        .background(Color.white.opacity(0.2))
                         .cornerRadius(10)
                     TextField("Answer", text: $answer)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .background(Color.gray)
+                        .background(Color.white.opacity(0.2))
                         .cornerRadius(10)
                     Button(action: addQuestion) {
                         Text("Add Question")
-                            .foregroundColor(.gray)
-                            .padding()
-                            .background(Color.blue)
+                            .foregroundColor(.blue)
                             .cornerRadius(10)
                     }
                 }
                 .padding()
-                .background(Color.white)
+                .background(Color.white.opacity(0.2))
                 .cornerRadius(10)
             }
             Divider()
                 .background(Color.white)
             Button(action: saveQuiz) {
                 Text("Save Quiz")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
+                    .foregroundColor(.blue)
                     .cornerRadius(10)
             }
             .padding()
         }
         .padding()
-        .background(Color(red: 0.17, green: 0.24, blue: 0.31))
+        .background(Color.black)
         .cornerRadius(20)
         .padding(.horizontal, 20)
     }
+
     
     func addQuestion() {
         questions.append(Question(prompt: prompt, answer: answer))

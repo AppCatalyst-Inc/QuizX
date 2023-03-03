@@ -47,7 +47,7 @@ struct ContentView: View {
                 }
             }
         }
-        .frame(minWidth: 800, minHeight: 600) // sets min width and height constraints for app window
+        .frame(minWidth: 1000, minHeight: 800) // sets min width and height constraints for app window
     }
 }
 
