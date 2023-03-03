@@ -38,7 +38,7 @@ struct createSquareCard: View {
             
             HStack {
                 VStack(alignment:.leading) {
-                    Text("Click to cretae a new Square")
+                    Text("Click to create a new Square")
                         .font(.headline)
                         .foregroundColor(.secondary)
                         .padding(.top)
