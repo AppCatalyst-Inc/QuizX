@@ -32,9 +32,14 @@ struct TeacherView: View {
         VStack(spacing: 20) {
             Text("Create a Quiz")
                 .font(.largeTitle)
+                .foregroundColor(.white)
             TextField("Quiz Title", text: $quizTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
             Divider()
+                .background(Color.white)
             List {
                 ForEach(questions, id: \.prompt) { question in
                     HStack {
@@ -48,24 +53,39 @@ struct TeacherView: View {
                 HStack {
                     TextField("Prompt", text: $prompt)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .background(Color.white)
+                        .cornerRadius(10)
                     TextField("Answer", text: $answer)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .background(Color.white)
+                        .cornerRadius(10)
                     Button(action: addQuestion) {
                         Text("Add Question")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
                 }
                 .padding()
+                .background(Color.white)
+                .cornerRadius(10)
             }
             Divider()
+                .background(Color.white)
             Button(action: saveQuiz) {
                 Text("Save Quiz")
                     .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
             }
             .padding()
-            .background(Color.blue)
-            .cornerRadius(10)
         }
         .padding()
+        .background(Color(red: 0.17, green: 0.24, blue: 0.31))
+        .cornerRadius(20)
+        .padding(.horizontal, 20)
     }
     
     func addQuestion() {
@@ -93,6 +113,7 @@ struct QuizListView: View {
                     HStack {
                         Text(quiz.title)
                             .font(.headline)
+                            .foregroundColor(.white)
                             .padding()
                         Spacer()
                     }
@@ -103,6 +124,7 @@ struct QuizListView: View {
             HStack {
                 Spacer()
                 Text("There are no quizzes available.")
+                    .foregroundColor(.white)
                 Spacer()
             }
         }
@@ -124,48 +146,75 @@ struct AnswerView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Text(quiz.title)
-                    .font(.largeTitle)
-                Divider()
-                Text(quiz.questions[currentQuestion].prompt)
-                    .font(.title)
-                    .padding()
-                TextField("Answer", text: $answer)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+            VStack(alignment: .center, spacing: 30) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(quiz.title)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Text("Question \(currentQuestion + 1) of \(quiz.questions.count)")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.top, 40)
+                
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(quiz.questions[currentQuestion].prompt)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    TextField("Answer", text: $answer)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .frame(height: 40)
+                        .padding(.leading, 5)
+                }
+                .padding(.horizontal, 20)
+                
                 Button(action: checkAnswer) {
                     Text("Submit")
                         .foregroundColor(.white)
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 10)
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
+                .padding(.top, 30)
+                
                 Spacer()
-                Text("Score: \(score)")
-                    .font(.title)
-                    .padding()
+                
+                HStack(alignment: .center) {
+                    Text("Score: \(score)")
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showingLeaveWarning.toggle()
+                    }) {
+                        Text("End Quiz")
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 10)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                    }
+                    .alert("Are you sure you want to end the quiz?", isPresented: $showingLeaveWarning) {
+                        Button("No", role: .cancel) { }
+                        Button("Yes", role: .destructive) {
+                            closeQuiz = true
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 40)
             }
+            .navigationBarBackButtonHidden(true)
             .frame(minWidth: 300, minHeight: 300)
             .sheet(isPresented: $showingFinished) {
                 FinishedView(score: $score, currentQuestion: $currentQuestion, closeQuiz: $closeQuiz)
             }
             .onChange(of: closeQuiz) { newValue in
                 presentationMode.wrappedValue.dismiss()
-            }
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button {
-                        showingLeaveWarning.toggle()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .alert("Are you sure you want to leave? Your work and score will NOT be saved.", isPresented: $showingLeaveWarning) {
-                        Button("Cancel", role: .cancel) { }
-                        Button("Leave", role: .destructive) {presentationMode.wrappedValue.dismiss()}
-                    }
-                }
             }
         }
     }
@@ -183,6 +232,7 @@ struct AnswerView: View {
         }
     }
 }
+
 
 struct FinishedView: View {
     

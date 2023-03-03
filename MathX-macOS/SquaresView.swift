@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SquaresView: View {
     
-    let squares = ["English": "books.vertical", "EMath": "sum", "AMath": "function", "Physics": "tree", "Chemistry": "atom", "Biology": "allergens", "Computing": "terminal", "Electronics": "bolt", "Biotech": "pills", "Design Studies": "paintbrush.pointed", "Chinese": "character.book.closed.zh", "Social Studies": "person.line.dotted.person", "Geography": "mountain.2", "History": "globe.asia.australia", "CCE": "building.2"]
+    let squares = ["English": "books.vertical", "E Math": "sum", "A Math": "function", "Physics": "tree", "Chemistry": "atom", "Biology": "allergens", "Computing": "terminal", "Electronics": "bolt", "Biotech": "pills", "Design Studies": "paintbrush.pointed", "Chinese": "character.book.closed.zh", "Social Studies": "person.line.dotted.person", "Geography": "mountain.2", "History": "globe.asia.australia", "CCE": "building.2"]
     let squaresColour = ["English": .blue, "EMath": .yellow, "AMath": .orange, "Physics": .purple, "Chemistry": .green, "Biology": .cyan, "Computing": .brown, "Electronics": .red, "Biotech": Color.green, "Design Studies": .pink, "Chinese": .red, "Social Studies": Color.indigo, "Geography": Color.mint, "History": Color.teal, "CCE": Color.gray]
     
     @State var searchSquares = String()
