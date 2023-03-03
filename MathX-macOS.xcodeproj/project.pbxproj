@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B229AE5A1E0045FE82 /* Quiz.swift */; };
 		6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA7D01729AFC286007713D7 /* SquaresView.swift */; };
+		6AA80DDD29B22D5A009D6E81 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DDC29B22D5A009D6E81 /* data.swift */; };
+		6AA80DE029B22D76009D6E81 /* createSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */; };
+		6AA80DE229B22D85009D6E81 /* joinSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DE129B22D85009D6E81 /* joinSquareCard.swift */; };
+		6AA80DE429B22D9F009D6E81 /* subjectSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DE329B22D9F009D6E81 /* subjectSquareCard.swift */; };
 		6AABAED329AC9D3700982A2F /* MathX_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */; };
 		6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AABAED429AC9D3700982A2F /* ContentView.swift */; };
 		6AABAED729AC9D3900982A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AABAED629AC9D3900982A2F /* Assets.xcassets */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		6A6846B229AE5A1E0045FE82 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		6AA7D01729AFC286007713D7 /* SquaresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquaresView.swift; sourceTree = "<group>"; };
+		6AA80DDC29B22D5A009D6E81 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
+		6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createSquareCard.swift; sourceTree = "<group>"; };
+		6AA80DE129B22D85009D6E81 /* joinSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSquareCard.swift; sourceTree = "<group>"; };
+		6AA80DE329B22D9F009D6E81 /* subjectSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subjectSquareCard.swift; sourceTree = "<group>"; };
 		6AABAECF29AC9D3700982A2F /* MathX-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MathX-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathX_macOSApp.swift; sourceTree = "<group>"; };
 		6AABAED429AC9D3700982A2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,6 +47,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AA80DDE29B22D63009D6E81 /* Squares */ = {
+			isa = PBXGroup;
+			children = (
+				6AA7D01729AFC286007713D7 /* SquaresView.swift */,
+				6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */,
+				6AA80DE129B22D85009D6E81 /* joinSquareCard.swift */,
+				6AA80DE329B22D9F009D6E81 /* subjectSquareCard.swift */,
+			);
+			path = Squares;
+			sourceTree = "<group>";
+		};
 		6AABAEC629AC9D3700982A2F = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +77,10 @@
 		6AABAED129AC9D3700982A2F /* MathX-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				6AA80DDC29B22D5A009D6E81 /* data.swift */,
 				6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */,
 				6AABAED429AC9D3700982A2F /* ContentView.swift */,
-				6AA7D01729AFC286007713D7 /* SquaresView.swift */,
+				6AA80DDE29B22D63009D6E81 /* Squares */,
 				6ADF520D29AEDE2500C08345 /* Sidebar.swift */,
 				6A6846B229AE5A1E0045FE82 /* Quiz.swift */,
 				6AABAED629AC9D3900982A2F /* Assets.xcassets */,
@@ -148,10 +168,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AA80DE429B22D9F009D6E81 /* subjectSquareCard.swift in Sources */,
 				6ADF520E29AEDE2500C08345 /* Sidebar.swift in Sources */,
+				6AA80DDD29B22D5A009D6E81 /* data.swift in Sources */,
+				6AA80DE229B22D85009D6E81 /* joinSquareCard.swift in Sources */,
 				6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */,
 				6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */,
 				6AABAED329AC9D3700982A2F /* MathX_macOSApp.swift in Sources */,
+				6AA80DE029B22D76009D6E81 /* createSquareCard.swift in Sources */,
 				6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,12 +302,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MathX-macOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 67PAUT5FCD;
+				DEVELOPMENT_TEAM = DBBLGF84W3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -306,12 +330,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MathX-macOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 67PAUT5FCD;
+				DEVELOPMENT_TEAM = DBBLGF84W3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
