@@ -15,22 +15,14 @@ struct createSquareCard: View {
     
     var body: some View  {
         VStack {
-            HStack {
-                Button {
-                    
-                } label: {
-                    Image(systemName: hovering ? "plus.square.fill.on.square.fill" : "plus.square.on.square")
-                        .font(.largeTitle)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(maxHeight: .infinity, alignment: .center)
-                }
-                .buttonStyle(.plain)
+            Image(systemName: hovering ? "plus.square.fill.on.square.fill" : "plus.square.on.square")
+                .font(.largeTitle)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxHeight: .infinity, alignment: .center)
                 .background(.gray.opacity(0.05))
                 .cornerRadius(16)
                 .padding(.horizontal, 1)
-                
-            }
-            .padding(.horizontal)
+                .padding(.horizontal)
             
             Spacer()
             
