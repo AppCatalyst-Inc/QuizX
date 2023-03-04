@@ -42,27 +42,29 @@ struct SquaresView: View {
                             }
                             .padding()
                             
-                            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: Int(floor((geometry.size.width - 70) / cardWidth))), spacing: 30) {
-                                Button {
+                            if search.isEmpty {
+                                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: Int(floor((geometry.size.width - 70) / cardWidth))), spacing: 30) {
+                                    Button {
+                                        
+                                    } label: {
+                                        joinSquareCard(cardWidth: cardWidth)
+                                    }
+                                    .frame(width: cardWidth, height: cardWidth)
+                                    .padding()
+                                    .buttonStyle(.plain)
                                     
-                                } label: {
-                                    joinSquareCard(cardWidth: cardWidth)
+                                    Button {
+                                        
+                                    } label: {
+                                        createSquareCard(cardWidth: cardWidth)
+                                    }
+                                    .frame(width: cardWidth, height: cardWidth)
+                                    .padding()
+                                    .buttonStyle(.plain)
                                 }
-                                .frame(width: cardWidth, height: cardWidth)
                                 .padding()
-                                .buttonStyle(.plain)
-                                
-                                Button {
-                                    
-                                } label: {
-                                    createSquareCard(cardWidth: cardWidth)
-                                }
-                                .frame(width: cardWidth, height: cardWidth)
-                                .padding()
-                                .buttonStyle(.plain)
+                                .padding(.bottom, 100)
                             }
-                            .padding()
-                            .padding(.bottom, 100)
                         }
                     }
                 }
