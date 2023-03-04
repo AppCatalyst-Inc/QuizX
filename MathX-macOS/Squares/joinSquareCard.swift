@@ -19,7 +19,7 @@ struct joinSquareCard: View {
                 Button {
                     
                 } label: {
-                    Image(systemName: hovering ? "plus.square.fill" : "plus.square.on.square")
+                    Image(systemName: hovering ? "plus.square.fill" : "plus.square")
                         .font(.largeTitle)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .frame(maxHeight: .infinity, alignment: .center)
