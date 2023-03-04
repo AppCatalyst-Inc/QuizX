@@ -11,7 +11,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter","person", "pencil.and.ruler", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "person", "pencil.and.ruler", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -116,7 +116,7 @@ struct Sidebar: View {
                     withAnimation {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(Color.primary.opacity(0.2))
-                            .matchedGeometryEffect(id: "Hover", in: animation)
+                            .matchedGeometryEffect(id: "hover", in: animation)
                             .frame(width: image == currentTab ? 86 : 88, height: image == hoverImage ? 80 : 0)
                             .offset(x: image == currentTab ? 4 : 0)
                     }
@@ -129,7 +129,7 @@ struct Sidebar: View {
                 if currentTab == image {
                     Capsule()
                         .fill(Color.primary)
-                        .matchedGeometryEffect(id: "Tab", in: animation)
+                        .matchedGeometryEffect(id: "tab", in: animation)
                         .frame(width: 3, height: 80)
                         .offset(x: 2)
                 }

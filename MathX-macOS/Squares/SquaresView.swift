@@ -60,7 +60,6 @@ struct SquaresView: View {
                                 .frame(width: cardWidth, height: cardWidth)
                                 .padding()
                                 .buttonStyle(.plain)
-
                             }
                             .padding()
                             .padding(.bottom, 100)

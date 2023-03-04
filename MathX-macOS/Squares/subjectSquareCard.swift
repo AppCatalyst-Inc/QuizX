@@ -13,49 +13,26 @@ struct subjectSquareCard: View {
     
     @State var hovering = Bool()
     
+    @Namespace var animation
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
+            
             HStack {
-                Button {
-                    
-                } label: {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Image(systemName: "qrcode.viewfinder")
-                                .font(.title2)
-                            Spacer()
-                        }
-                        Spacer()
+                shortcutButton(buttonTitle: "Quizzes", imageName: "doc.richtext", animationid: "quizzesAnimation")
+                    .padding(.leading, 10)
+                    .onTapGesture {
+                        print("quizzes tapped")
+                        // code to be executed when button is pressed
                     }
-                }
-                .buttonStyle(.plain)
-                .background(square.colour.opacity(0.3))
-                .cornerRadius(16)
-                .padding(.horizontal, 1)
                 
-                Button {
-                    
-                } label: {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Image(systemName: "calendar.day.timeline.right")
-                                .font(.title2)
-                            Spacer()
-                        }
-                        Spacer()
+                shortcutButton(buttonTitle: "Notes", imageName: "doc.text", animationid: "notesAnimation")
+                    .padding(.trailing, 10)
+                    .onTapGesture {
+                        print("notes tapped")
+                        // code to be executed when button is pressed
                     }
-                }
-                .buttonStyle(.plain)
-                .background(square.colour.opacity(0.3))
-                .cornerRadius(16)
-                .padding(.horizontal, 1)
-                
             }
-            .padding(.horizontal)
             
             Spacer()
             
@@ -101,17 +78,45 @@ struct subjectSquareCard: View {
             .padding(.bottom)
             
         }
-        .frame(width: cardWidth, height: cardWidth, alignment: .center)
+        .frame(width: cardWidth, height: cardWidth)
         .padding(.vertical)
         .background(square.colour.opacity(0.5))
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
-            withAnimation(.easeOut) {
+            withAnimation(.spring(response: 0.5)) {
                 hovering = hover
             }
         }
         .padding(.horizontal, hovering ? 15 : 0)
+    }
+    
+    @ViewBuilder
+    func shortcutButton(buttonTitle: String, imageName: String, animationid: String) -> some View {
+        VStack {
+            Text("")
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: .infinity)
+                .background(square.colour.opacity(0.3))
+                .cornerRadius(16)
+                .overlay (
+                    VStack {
+                        Image(systemName: hovering ? "\(imageName).fill" : imageName)
+                            .font(.title)
+                        if hovering {
+                            withAnimation {
+                                Text(buttonTitle)
+                                    .multilineTextAlignment(.center)
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .matchedGeometryEffect(id: animationid, in: animation)
+                            }
+                        }
+                    }
+                    , alignment: .center
+                )
+        }
+        .padding(.horizontal, 2.5)
     }
 }
 
