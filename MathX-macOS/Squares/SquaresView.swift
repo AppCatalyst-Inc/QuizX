@@ -15,9 +15,7 @@ struct SquaresView: View {
         
     @State var textfieldFocus: FocusState<Bool>.Binding
     @Environment(\.colorScheme) var colorScheme
-    
-    @Namespace var animation
-    
+        
     var body: some View {
         VStack(spacing: 15) {
             HStack {
