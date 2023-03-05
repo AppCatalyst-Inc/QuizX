@@ -46,23 +46,21 @@ struct SquaresView: View {
                             
                             if search.isEmpty {
                                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: Int(floor((geometry.size.width - 70) / cardWidth))), spacing: 30) {
-                                    Button {
-                                        
-                                    } label: {
-                                        joinSquareCard(cardWidth: cardWidth)
-                                    }
-                                    .frame(width: cardWidth, height: cardWidth)
-                                    .padding()
-                                    .buttonStyle(.plain)
+                                    joinSquareCard(cardWidth: cardWidth)
+                                        .frame(width: cardWidth, height: cardWidth)
+                                        .padding()
+                                        .onTapGesture {
+                                            print("joinSquare tapped")
+                                            // code to be executed when button is pressed
+                                        }
                                     
-                                    Button {
-                                        
-                                    } label: {
-                                        createSquareCard(cardWidth: cardWidth)
-                                    }
-                                    .frame(width: cardWidth, height: cardWidth)
-                                    .padding()
-                                    .buttonStyle(.plain)
+                                    createSquareCard(cardWidth: cardWidth)
+                                        .frame(width: cardWidth, height: cardWidth)
+                                        .padding()
+                                        .onTapGesture {
+                                            print("createSquare tapped")
+                                            // code to be executed when button is pressed
+                                        }
                                 }
                                 .padding()
                                 .padding(.bottom, 100)
@@ -94,7 +92,6 @@ struct SquaresView: View {
                     .font(.title3)
                     .foregroundColor(.primary)
             }
-            .keyboardShortcut("F", modifiers: [.command, .shift])
             .buttonStyle(.plain)
             
             TextField("Search", text: $search)

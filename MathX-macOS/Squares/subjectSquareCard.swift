@@ -24,14 +24,14 @@ struct subjectSquareCard: View {
                 shortcutButton(buttonTitle: "Quizzes", imageName: "doc.richtext", animationid: "quizzesAnimation")
                     .padding(.leading, 10)
                     .onTapGesture {
-                        print("quizzes tapped")
+                        print("\(square.title) - quizzes tapped")
                         // code to be executed when button is pressed
                     }
                 
                 shortcutButton(buttonTitle: "Notes", imageName: "doc.text", animationid: "notesAnimation")
                     .padding(.trailing, 10)
                     .onTapGesture {
-                        print("notes tapped")
+                        print("\(square.title) - notes tapped")
                         // code to be executed when button is pressed
                     }
             }
@@ -86,7 +86,7 @@ struct subjectSquareCard: View {
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
-            withAnimation(.spring(response: 0.5)) {
+            withAnimation(.spring(response: 0.3)) {
                 hovering = hover
             }
         }
@@ -106,7 +106,7 @@ struct subjectSquareCard: View {
                         square.colour.opacity(colorScheme == .dark ? 0 : 0.65)
                             .cornerRadius(16)
                         VStack {
-                            Image(systemName: hovering ? "\(imageName).fill" : imageName)
+                            Image(systemName: imageName)
                                 .font(.title)
                             if hovering {
                                 withAnimation {
