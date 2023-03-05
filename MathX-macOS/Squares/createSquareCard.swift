@@ -19,7 +19,6 @@ struct createSquareCard: View {
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .frame(maxHeight: .infinity, alignment: .center)
-                .background(.gray.opacity(0.05))
                 .cornerRadius(16)
                 .padding(.horizontal, 1)
                 .padding(.horizontal)
@@ -56,7 +55,6 @@ struct createSquareCard: View {
         }
         .frame(width: cardWidth, height: cardWidth, alignment: .center)
         .padding(.vertical)
-        .background(.ultraThickMaterial)
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in

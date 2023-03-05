@@ -13,13 +13,14 @@ struct joinSquareCard: View {
     
     @State var hovering = Bool()
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View  {
         VStack {
             Image(systemName: hovering ? "plus.square.fill" : "plus.square")
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .frame(maxHeight: .infinity, alignment: .center)
-                .background(.gray.opacity(0.05))
                 .cornerRadius(16)
                 .padding(.horizontal, 1)
                 .padding(.horizontal)
@@ -56,7 +57,7 @@ struct joinSquareCard: View {
         }
         .frame(width: cardWidth, height: cardWidth, alignment: .center)
         .padding(.vertical)
-        .background(.ultraThickMaterial)
+        .background(.clear)
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
