@@ -13,6 +13,8 @@ struct subjectSquareCard: View {
     
     @State var hovering = Bool()
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @Namespace var animation
     
     var body: some View {
@@ -80,7 +82,7 @@ struct subjectSquareCard: View {
         }
         .frame(width: cardWidth, height: cardWidth)
         .padding(.vertical)
-        .background(square.colour.opacity(0.5))
+        .background(square.colour.opacity(colorScheme == .dark ? 0.5 : 0.7))
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
@@ -97,19 +99,23 @@ struct subjectSquareCard: View {
             Text("")
                 .frame(maxWidth: .infinity)
                 .frame(maxHeight: .infinity)
-                .background(square.colour.opacity(0.3))
+                .background(colorScheme == .dark ? square.colour.opacity(0.3) : .white)
                 .cornerRadius(16)
                 .overlay (
-                    VStack {
-                        Image(systemName: hovering ? "\(imageName).fill" : imageName)
-                            .font(.title)
-                        if hovering {
-                            withAnimation {
-                                Text(buttonTitle)
-                                    .multilineTextAlignment(.center)
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
-                                    .matchedGeometryEffect(id: animationid, in: animation)
+                    ZStack {
+                        square.colour.opacity(colorScheme == .dark ? 0 : 0.65)
+                            .cornerRadius(16)
+                        VStack {
+                            Image(systemName: hovering ? "\(imageName).fill" : imageName)
+                                .font(.title)
+                            if hovering {
+                                withAnimation {
+                                    Text(buttonTitle)
+                                        .multilineTextAlignment(.center)
+                                        .font(.subheadline)
+                                        .fontWeight(.bold)
+                                        .matchedGeometryEffect(id: animationid, in: animation)
+                                }
                             }
                         }
                     }

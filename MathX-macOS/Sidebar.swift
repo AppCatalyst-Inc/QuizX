@@ -115,7 +115,7 @@ struct Sidebar: View {
                 if image == hoverImage { // light gray background hovering effect
                     withAnimation {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.primary.opacity(0.2))
+                            .fill(colorScheme == .dark ? Color.primary.opacity(0.2) : Color.gray.opacity(0.2))
                             .matchedGeometryEffect(id: "hover", in: animation)
                             .frame(width: image == currentTab ? 86 : 88, height: image == hoverImage ? 80 : 0)
                             .offset(x: image == currentTab ? 4 : 0)
