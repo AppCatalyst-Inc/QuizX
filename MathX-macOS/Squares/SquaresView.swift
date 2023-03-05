@@ -22,13 +22,15 @@ struct SquaresView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack {
                         Text("Squares") // title
-                            .font(.largeTitle)
+                            .font(.system(size: 30))
                             .fontWeight(.bold)
                             .padding(.vertical, 30)
+                            .padding(.leading, 10)
                         
                         Spacer()
                         
                         searchBar // search bar
+                            .padding(.trailing, 10)
                     }
                     
                     // squares layout
