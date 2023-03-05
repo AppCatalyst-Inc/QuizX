@@ -16,6 +16,8 @@ struct SquaresView: View {
     @State var textfieldFocus: FocusState<Bool>.Binding
     @Environment(\.colorScheme) var colorScheme
     
+    @Namespace var animation
+    
     var body: some View {
         VStack(spacing: 15) {
             HStack {
@@ -85,14 +87,26 @@ struct SquaresView: View {
     
     var searchBar: some View {
         HStack(spacing: 10) {
-            Button {
-                textfieldFocus.wrappedValue.toggle()
-            } label: {
-                Image(systemName: "magnifyingglass")
-                    .font(.title3)
-                    .foregroundColor(.primary)
+            if search.isEmpty {
+                    Button {
+                        textfieldFocus.wrappedValue.toggle()
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                    }
+                    .buttonStyle(.plain)
+                    .padding([.top, .leading], 0.5) // to counter xmark's slightly larger sf symbol
+            } else {
+                    Button {
+                        search = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title3)
+                            .foregroundColor(.gray)
+                    }
+                    .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
             
             TextField("Search", text: $search)
                 .frame(width: 150)
