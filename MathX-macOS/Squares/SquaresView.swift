@@ -86,15 +86,13 @@ struct SquaresView: View {
     var searchBar: some View {
         HStack(spacing: 10) {
             if search.isEmpty {
-                    Button {
-                        textfieldFocus.wrappedValue.toggle()
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .font(.title3)
-                            .foregroundColor(.primary)
-                    }
-                    .buttonStyle(.plain)
+                Image(systemName: "magnifyingglass")
+                    .font(.title3)
+                    .foregroundColor(.primary)
                     .padding([.top, .leading], 0.5) // to counter xmark's slightly larger sf symbol
+                    .onTapGesture {
+                        textfieldFocus.wrappedValue.toggle() // focuses search field when magnifying glass is pressed
+                    }
             } else {
                     Button {
                         search = ""
@@ -114,10 +112,10 @@ struct SquaresView: View {
                 .fontWeight(.bold)
                 .focused(textfieldFocus)
                 .onExitCommand {
-                    textfieldFocus.wrappedValue = false
+                    textfieldFocus.wrappedValue = false // unfocuses search field when escape key is pressed
                 }
                 .onSubmit {
-                    textfieldFocus.wrappedValue = false
+                    textfieldFocus.wrappedValue = false // unfocuses search field when enter key is pressed
                 }
         }
         .padding(.vertical, 8)
@@ -126,9 +124,9 @@ struct SquaresView: View {
         .clipShape(Capsule())
         .overlay(
             Capsule()
-                .stroke(colorScheme == .dark ? .gray : .clear, lineWidth: 1.5)
+                .stroke(colorScheme == .dark ? .gray : .clear, lineWidth: 1.5) // sets border width around search bar if in dark mode
         )
-        .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.4 : 0.2), radius: 5, x: 5, y: 0)
+        .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.4 : 0.2), radius: 5, x: 5, y: 0) // sets shadow below search bar if in light mode
     }
 }
 

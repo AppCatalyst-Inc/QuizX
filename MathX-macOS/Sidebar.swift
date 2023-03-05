@@ -127,11 +127,13 @@ struct Sidebar: View {
         .overlay( // capsule-line indicator to show current tab
             HStack {
                 if currentTab == image {
-                    Capsule()
-                        .fill(Color.primary)
-                        .matchedGeometryEffect(id: "tab", in: animation)
-                        .frame(width: 3, height: 80)
-                        .offset(x: 2)
+                    withAnimation {
+                        Capsule()
+                            .fill(Color.primary)
+                            .matchedGeometryEffect(id: "tab", in: animation)
+                            .frame(width: 3, height: 80)
+                            .offset(x: 2)
+                    }
                 }
             }
             

@@ -19,12 +19,12 @@ struct MathX_macOSApp: App {
         WindowGroup {
             ContentView(currentTab: currentTab, textfieldFocus: $textfieldFocus)
                 .focusable(false) // disables tab button from selecting items
-                .background(Color("BG").ignoresSafeArea())
+                .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
         }
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowToolbarStyle(UnifiedWindowToolbarStyle())
         .commands {
-            CommandGroup(replacing: CommandGroupPlacement.newItem) { // removes option to add new windows
+            CommandGroup(replacing: CommandGroupPlacement.newItem) { // removes option to add new windows with command N or through menu bar
             }
         }
     }

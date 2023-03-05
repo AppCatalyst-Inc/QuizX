@@ -41,7 +41,7 @@ struct ContentView: View {
                 } else {
                     HStack {
                         Spacer()
-                        Text("A problem has occurred, Quit and Reopen the app.")
+                        Text("A problem has occurred, Quit and Reopen the app.") // appears when @State var currentTab isnt any of the available tabs
                         Spacer()
                     }
                 }

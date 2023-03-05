@@ -42,17 +42,18 @@ struct subjectSquareCard: View {
             
             HStack {
                 VStack(alignment:.leading) {
-                    Text("PLACEHOLDER")
+                    Text("PLACEHOLDER") // placeholder text idk what to put
                         .font(.headline)
                         .foregroundColor(.secondary)
                         .padding(.top)
                     HStack {
-                        Text(square.title)
+                        Text(square.title) // subject square title
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
                             .lineLimit(2)
                         
+                        // adds .fill to subject square image unless subject's sf symbol doesnt support it
                         if hovering && square.imageName != "sum" && square.imageName != "function" && square.imageName != "atom" && square.imageName != "character.book.closed.zh" {
                             withAnimation {
                                 Image(systemName: square.imageName + ".fill")
@@ -96,21 +97,21 @@ struct subjectSquareCard: View {
     @ViewBuilder
     func shortcutButton(buttonTitle: String, imageName: String, animationid: String) -> some View {
         VStack {
-            Text("")
+            Text("") // need a placeholder for button's background
                 .frame(maxWidth: .infinity)
                 .frame(maxHeight: .infinity)
-                .background(colorScheme == .dark ? square.colour.opacity(0.3) : .white)
+                .background(colorScheme == .dark ? square.colour.opacity(0.3) : .white) // shortcut button's bg colour
                 .cornerRadius(16)
                 .overlay (
                     ZStack {
-                        square.colour.opacity(colorScheme == .dark ? 0 : 0.65)
+                        square.colour.opacity(colorScheme == .dark ? 0 : 0.65) // shortcut button's bg colour
                             .cornerRadius(16)
                         VStack {
-                            Image(systemName: imageName)
+                            Image(systemName: imageName) // shortcut button sf symbol
                                 .font(.title)
                             if hovering {
                                 withAnimation {
-                                    Text(buttonTitle)
+                                    Text(buttonTitle) // shortcut button title
                                         .multilineTextAlignment(.center)
                                         .font(.subheadline)
                                         .fontWeight(.bold)

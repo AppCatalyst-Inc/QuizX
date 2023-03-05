@@ -14,6 +14,7 @@ struct Square {
     let colour: Color
 }
 
+// temporary subject squares data
 let sqauresCards: [Square] = [
     Square(title: "English", imageName: "books.vertical", colour: .blue),
     Square(title: "EMath", imageName: "sum", colour: .yellow),
