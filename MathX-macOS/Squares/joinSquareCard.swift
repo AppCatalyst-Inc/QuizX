@@ -61,7 +61,7 @@ struct joinSquareCard: View {
         .cornerRadius(32)
         .scaleEffect(hovering ? 1.03 : 1)
         .onHover { hover in
-            withAnimation(.easeOut) {
+            withAnimation(.easeInOut) {
                 hovering = hover
             }
         }
