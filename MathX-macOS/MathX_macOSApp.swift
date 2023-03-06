@@ -26,6 +26,25 @@ struct MathX_macOSApp: App {
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) { // removes option to add new windows with command N or through menu bar
             }
+            
+            CommandGroup(replacing: .appInfo) {
+                Button("About MathX-macOS") {
+                    NSApplication.shared.orderFrontStandardAboutPanel(
+                        options: [
+                            NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
+                                string: "Developers: Aathithya Jegatheesan, Tristan Chay, Sairam Suresh, and Kavin Jayakumar",
+                                attributes: [
+                                    NSAttributedString.Key.font: NSFont.boldSystemFont(
+                                        ofSize: NSFont.smallSystemFontSize)
+                                ]
+                            ),
+                            NSApplication.AboutPanelOptionKey(
+                                rawValue: "Copyright"
+                            ): "© 2023 AppCatalyst Inc., a company in SST Inc."
+                        ]
+                    )
+                }
+            }
         }
     }
 }
