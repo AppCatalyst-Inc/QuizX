@@ -31,11 +31,7 @@ struct ContentView: View {
                 } else if currentTab == "pencil.and.ruler" {
                     TeacherView(quizStore: quizStore)
                 } else if currentTab == "gearshape" {
-                    HStack {
-                        Spacer()
-                        Text("Settings/Profile View")
-                        Spacer()
-                    }
+                    settingsView()
                 } else if currentTab == "square.split.bottomrightquarter" {
                     SquaresView(textfieldFocus: textfieldFocus)
                 } else {
