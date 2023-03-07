@@ -11,7 +11,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "person", "pencil.and.ruler", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -66,44 +66,22 @@ struct Sidebar: View {
             
             // adds text to icons when hovered over
             if !hoverImage.isEmpty {
-                if image == "person" || image == "person.fill" {
-                    if hoverImage == "person" || hoverImage == "person.fill" {
-                        withAnimation {
-                            Text("Quizzes")
-                                .padding(.horizontal, 6)
-                                .multilineTextAlignment(.center)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                        }
-                    }
-                } else if image == "pencil.and.ruler" || image == "pencil.and.ruler.fill" {
+                if image == "pencil.and.ruler" || image == "pencil.and.ruler.fill" {
                     if hoverImage == "pencil.and.ruler" || hoverImage == "pencil.and.ruler.fill" {
                         withAnimation {
-                            Text("Create Quiz")
-                                .padding(.horizontal, 6)
-                                .multilineTextAlignment(.center)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
+                            sidebarHoverText(hoverText: "Create Quiz")
                         }
                     }
                 } else if image == "gearshape" || image == "gearshape.fill" {
                     if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
                         withAnimation {
-                            Text("Settings")
-                                .padding(.horizontal, 6)
-                                .multilineTextAlignment(.center)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
+                            sidebarHoverText(hoverText: "Settings")
                         }
                     }
                 } else if image == "square.split.bottomrightquarter" || image == "square.split.bottomrightquarter.fill" {
                     if hoverImage == "square.split.bottomrightquarter" || hoverImage == "square.split.bottomrightquarter.fill" {
                         withAnimation {
-                            Text("Squares")
-                                .padding(.horizontal, 6)
-                                .multilineTextAlignment(.center)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
+                            sidebarHoverText(hoverText: "Squares")
                         }
                     }
                 }
@@ -144,6 +122,17 @@ struct Sidebar: View {
             withAnimation(.spring(response: 0.5)) {
                 currentTab = image
             }
+        }
+    }
+    
+    @ViewBuilder
+    func sidebarHoverText(hoverText: String) -> some View {
+        VStack {
+            Text(hoverText)
+                .padding(.horizontal, 6)
+                .multilineTextAlignment(.center)
+                .font(.subheadline)
+                .fontWeight(.bold)
         }
     }
 }
