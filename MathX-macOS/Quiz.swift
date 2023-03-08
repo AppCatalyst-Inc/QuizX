@@ -33,6 +33,7 @@ struct TeacherView: View {
             Text("Create a Quiz")
                 .font(.largeTitle)
                 .foregroundColor(.white)
+            //Here above to create quiz
             TextField("Quiz Title", text: $quizTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -104,7 +105,6 @@ struct TeacherView: View {
 struct QuizListView: View {
     let quizzes: [Quiz]
     let didSelectQuiz: (Quiz) -> Void
-    
     var body: some View {
         if quizzes.count > 0 {
             List(quizzes, id: \.title) { quiz in

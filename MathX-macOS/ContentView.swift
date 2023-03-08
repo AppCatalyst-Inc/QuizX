@@ -32,6 +32,8 @@ struct ContentView: View {
                     TeacherView(quizStore: quizStore)
                 } else if currentTab == "gearshape" {
                     settingsView()
+                } else if currentTab == "doc.text.image" {
+                    //Notes
                 } else if currentTab == "square.split.bottomrightquarter" {
                     SquaresView(textfieldFocus: textfieldFocus)
                 } else {

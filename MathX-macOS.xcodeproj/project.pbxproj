@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		498B28FF29B8D14100F7F119 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498B28FE29B8D14100F7F119 /* Notes.swift */; };
 		6A4E528929B5B21F003A7F63 /* settingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4E528829B5B21F003A7F63 /* settingsView.swift */; };
 		6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B229AE5A1E0045FE82 /* Quiz.swift */; };
 		6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA7D01729AFC286007713D7 /* SquaresView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		498B28FE29B8D14100F7F119 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		6A4E528729B5B049003A7F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6A4E528829B5B21F003A7F63 /* settingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsView.swift; sourceTree = "<group>"; };
 		6A6846B229AE5A1E0045FE82 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				6AA80DDE29B22D63009D6E81 /* Squares */,
 				6ADF520D29AEDE2500C08345 /* Sidebar.swift */,
 				6A6846B229AE5A1E0045FE82 /* Quiz.swift */,
+				498B28FE29B8D14100F7F119 /* Notes.swift */,
 				6A4E528829B5B21F003A7F63 /* settingsView.swift */,
 				6AABAED629AC9D3900982A2F /* Assets.xcassets */,
 				6A4E528729B5B049003A7F63 /* Info.plist */,
@@ -177,6 +180,7 @@
 				6ADF520E29AEDE2500C08345 /* Sidebar.swift in Sources */,
 				6AA80DDD29B22D5A009D6E81 /* data.swift in Sources */,
 				6AA80DE229B22D85009D6E81 /* joinSquareCard.swift in Sources */,
+				498B28FF29B8D14100F7F119 /* Notes.swift in Sources */,
 				6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */,
 				6A4E528929B5B21F003A7F63 /* settingsView.swift in Sources */,
 				6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */,
