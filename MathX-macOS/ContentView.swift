@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var quizStore = QuizStore()
-    @State private var selectedQuiz: Quiz?
     
     @State var currentTab: String
     @State var textfieldFocus: FocusState<Bool>.Binding
@@ -25,13 +23,11 @@ struct ContentView: View {
                 
                 // current view opened
                 if currentTab == "person" {
-                    QuizListView(quizzes: quizStore.quizzes) { quiz in
-                        selectedQuiz = quiz
-                    }
+                    //
                 } else if currentTab == "pencil.and.ellipsis.rectangle" {
                     
                 } else if currentTab == "pencil.and.ruler" {
-                    TeacherView(quizStore: quizStore)
+                    CreateQuizView()
                 } else if currentTab == "doc.text.image" {
                     NotesView()
                 } else if currentTab == "gearshape" {
