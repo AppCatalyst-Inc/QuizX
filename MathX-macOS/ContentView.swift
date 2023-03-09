@@ -28,6 +28,8 @@ struct ContentView: View {
                     QuizListView(quizzes: quizStore.quizzes) { quiz in
                         selectedQuiz = quiz
                     }
+                } else if currentTab == "pencil.and.ellipsis.rectangle" {
+                    
                 } else if currentTab == "pencil.and.ruler" {
                     TeacherView(quizStore: quizStore)
                 } else if currentTab == "doc.text.image" {
