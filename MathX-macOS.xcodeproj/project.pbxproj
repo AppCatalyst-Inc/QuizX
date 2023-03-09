@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		498B28FF29B8D14100F7F119 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498B28FE29B8D14100F7F119 /* Notes.swift */; };
+		6A141F6C29B9B25000E0212A /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6A141F6B29B9B25000E0212A /* sample.pdf */; };
 		6A4E528929B5B21F003A7F63 /* settingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4E528829B5B21F003A7F63 /* settingsView.swift */; };
 		6A6846B329AE5A1E0045FE82 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B229AE5A1E0045FE82 /* Quiz.swift */; };
 		6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA7D01729AFC286007713D7 /* SquaresView.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		498B28FE29B8D14100F7F119 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		6A141F6B29B9B25000E0212A /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		6A4E528729B5B049003A7F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6A4E528829B5B21F003A7F63 /* settingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsView.swift; sourceTree = "<group>"; };
 		6A6846B229AE5A1E0045FE82 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A141F6D29B9B26000E0212A /* PDFs */ = {
+			isa = PBXGroup;
+			children = (
+				6A141F6B29B9B25000E0212A /* sample.pdf */,
+			);
+			path = PDFs;
+			sourceTree = "<group>";
+		};
 		6AA80DDE29B22D63009D6E81 /* Squares */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +102,7 @@
 				6A4E528829B5B21F003A7F63 /* settingsView.swift */,
 				6AABAED629AC9D3900982A2F /* Assets.xcassets */,
 				6A4E528729B5B049003A7F63 /* Info.plist */,
+				6A141F6D29B9B26000E0212A /* PDFs */,
 				6AABAEDB29AC9D3900982A2F /* MathX_macOS.entitlements */,
 				6AABAED829AC9D3900982A2F /* Preview Content */,
 			);
@@ -165,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AABAEDA29AC9D3900982A2F /* Preview Assets.xcassets in Resources */,
+				6A141F6C29B9B25000E0212A /* sample.pdf in Resources */,
 				6AABAED729AC9D3900982A2F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

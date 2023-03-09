@@ -11,7 +11,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "gearshape","doc.text.image" ]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "gearshape", "doc.text.image"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -85,7 +85,7 @@ struct Sidebar: View {
                         }
                     }
                 } else if image == "doc.text.image" || image == "doc.text.image.fill" {
-                    if hoverImage == "doc.text.image" || hoverImage == "doc.text.image" {
+                    if hoverImage == "doc.text.image" || hoverImage == "doc.text.image.fill" {
                         withAnimation {
                             sidebarHoverText(hoverText: "Notes")
                         }

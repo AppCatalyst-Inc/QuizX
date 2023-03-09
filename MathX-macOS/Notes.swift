@@ -8,48 +8,48 @@
 import SwiftUI
 import PDFKit
 
-struct PDFView: UIViewRepresentable {
-    var pdfURL: URL
-    
-    func makeUIView(context: Context) -> PDFKit.PDFView {
-        let pdfView = PDFKit.PDFView()
-        pdfView.document = PDFDocument(url: pdfURL)
-        pdfView.autoScales = true
-        return pdfView
-    }
-    
-    func updateUIView(_ uiView: PDFKit.PDFView, context: Context) {
-        uiView.document = PDFDocument(url: pdfURL)
-    }
-}
+struct NotesView: View {
+    @State var pdfDocument: PDFDocument?
 
-struct ContentView: View {
-    @State private var pdfData: Data? = nil
-    
     var body: some View {
         VStack {
-            if let pdfData = pdfData {
-                PDFKitView(pdfData: pdfData)
+            if let pdfDocument = pdfDocument {
+                PDFKitView(pdfDocument: pdfDocument)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                Text("Loading PDF...")
+                VStack {
+                    ProgressView()
+                        .font(.title3)
+                    Text("Loading PDF...")
+                        .font(.title)
+                        .padding(.top)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .fontWeight(.bold)
             }
         }
         .onAppear {
-            guard let url = URL(string: "https://www.example.com/example.pdf") else { return }
-            
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async {
-                    self.pdfData = data
-                }
-            }.resume()
+            if let url = Bundle.main.url(forResource: "sample", withExtension: "pdf") {
+                pdfDocument = PDFDocument(url: url)
+            }
         }
     }
 }
 
-struct PDFView_Previews: PreviewProvider {
-    static var previews: some View {
-        PDFView()
+struct PDFKitView: NSViewRepresentable {
+    typealias NSViewType = PDFView
+
+    let pdfDocument: PDFDocument
+
+    func makeNSView(context: Context) -> PDFView {
+        let pdfView = PDFView()
+        pdfView.autoScales = true
+        pdfView.document = pdfDocument
+        return pdfView
+    }
+
+    func updateNSView(_ nsView: PDFView, context: Context) {
+        nsView.document = pdfDocument
     }
 }
 
