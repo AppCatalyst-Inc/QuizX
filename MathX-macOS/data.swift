@@ -1,10 +1,3 @@
-//
-//  data.swift
-//  MathX-macOS
-//
-//  Created by Tristan on 03/03/2023.
-//
-
 import Foundation
 import SwiftUI
 

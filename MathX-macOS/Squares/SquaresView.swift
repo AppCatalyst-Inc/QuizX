@@ -1,10 +1,3 @@
-//
-//  SquaresView.swift
-//  MathX-macOS
-//
-//  Created by Tristan on 02/03/2023.
-//
-
 import SwiftUI
 
 struct SquaresView: View {

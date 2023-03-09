@@ -1,7 +1,5 @@
 import SwiftUI
 
-import SwiftUI
-
 struct CreateQuizView: View {
     @StateObject var quiz = Quiz(title: "", questions: [])
     @State var isTimed = false

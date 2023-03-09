@@ -1,10 +1,3 @@
-//
-//  Sidebar.swift
-//  MathX-macOS
-//
-//  Created by Tristan on 01/03/2023.
-//
-
 import SwiftUI
 
 struct Sidebar: View {
