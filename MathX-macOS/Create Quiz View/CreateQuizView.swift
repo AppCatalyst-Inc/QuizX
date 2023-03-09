@@ -26,25 +26,25 @@ struct CreateQuizView: View {
             Divider()
             
             List {
-                ForEach($quiz.questions) { $question in
+                ForEach(Array(quiz.questions.enumerated()), id: \.1.id) { index, question in
                     HStack {
-                        TextField("Prompt", text: $question.prompt)
+                        Text("\(index + 1).")
+                            .fontWeight(.bold)
+                            .frame(width: 20)
+                        TextField("Prompt", text: $quiz.questions[index].prompt)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(maxWidth: .infinity)
-                        
                         if isTimed {
-                            TextField("Time (seconds)", text: $question.timer)
+                            TextField("Time (seconds)", text: $quiz.questions[index].timer)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .frame(width: 100)
                         }
-                        
-                        TextField("Answer", text: $question.answer)
+                        TextField("Answer", text: $quiz.questions[index].answer)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(maxWidth: .infinity)
-                        
                         Button(action: {
-                            if quiz.questions.count > 1, let index = quiz.questions.firstIndex(where: { $0.id == question.id }) {
-                                quiz.questions.remove(at: index)
+                            if quiz.questions.count > 1, let indexToRemove = quiz.questions.firstIndex(where: { $0.id == question.id }) {
+                                quiz.questions.remove(at: indexToRemove)
                             }
                         }) {
                             Image(systemName: "minus.circle")
@@ -52,7 +52,6 @@ struct CreateQuizView: View {
                         }
                     }
                 }
-                
                 Button(action: {
                     quiz.questions.append(Question(prompt: "", answer: "", timer: isTimed ? "25" : ""))
                 }) {
@@ -64,6 +63,7 @@ struct CreateQuizView: View {
                 }
             }
             .listStyle(PlainListStyle())
+
             
             Divider()
             
