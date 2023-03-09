@@ -31,4 +31,13 @@ let sqauresCards: [Square] = [
     Square(title: "Geography", imageName: "mountain.2", colour: .mint),
     Square(title: "History", imageName: "globe.asia.australia", colour: .teal),
     Square(title: "CCE", imageName: "building.2", colour: .gray),
+    
+    Square(title: "Math", imageName: "sum", colour: .yellow),
+    Square(title: "Science", imageName: "atom", colour: .green),
+    Square(title: "ADMT", imageName: "paintbrush.pointed", colour: .pink),
+    Square(title: "ICT", imageName: "terminal", colour: .brown),
+    Square(title: "I&E", imageName: "doc.append", colour: .blue),
+    Square(title: "Environmental Chemistry", imageName: "atom", colour: .green),
+    Square(title: "Physics+", imageName: "tree", colour: .purple),
+    Square(title: "Integrated Math", imageName: "function", colour: .orange),
 ]
