@@ -3,6 +3,7 @@ import SwiftUI
 struct CreateQuizView: View {
     @StateObject var quiz = Quiz(title: "", questions: [])
     @State var isTimed = false
+    @State var is4option = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -13,7 +14,11 @@ struct CreateQuizView: View {
             TextField("Quiz Title", text: $quiz.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            Toggle("Time Mode", isOn: $isTimed)
+            Toggle("Time Mode       ", isOn: $isTimed)
+                .toggleStyle(SwitchToggleStyle(tint: .green))
+                .padding(.leading, 10)
+            
+            Toggle("Multiple Choice", isOn: $is4option)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
                 .padding(.leading, 10)
 
