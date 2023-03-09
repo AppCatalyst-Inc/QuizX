@@ -6,21 +6,17 @@ struct CreateQuizView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Text("Time Mode")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                Toggle("", isOn: $isTimed)
-                    .labelsHidden()
-            }
-            
             Text("Create a Quiz")
                 .font(.title)
                 .fontWeight(.bold)
-            
+
             TextField("Quiz Title", text: $quiz.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
+            Toggle("Time Mode", isOn: $isTimed)
+                .toggleStyle(SwitchToggleStyle(tint: .green))
+                .padding(.leading, 10)
+
             Divider()
             
             List {
