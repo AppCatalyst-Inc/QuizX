@@ -86,7 +86,7 @@ struct CreateQuizView: View {
     
     func saveQuiz() {
         // Save the quiz to the database or wherever it needs to go
-        print(quiz)
+        print("Saved")
     }
 }
 
