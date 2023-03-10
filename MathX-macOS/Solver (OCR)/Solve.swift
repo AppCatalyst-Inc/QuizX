@@ -36,7 +36,7 @@ struct ImagePicker: View {
                 
                 Button(action: {
                     let dialog = NSOpenPanel()
-                    dialog.allowedFileTypes = ["jpg", "jpeg", "png", "gif"]
+                    dialog.allowedContentTypes = [.jpeg, .png, .gif, .image]
                     
                     if dialog.runModal() == NSApplication.ModalResponse.OK {
                         if let url = dialog.url {
