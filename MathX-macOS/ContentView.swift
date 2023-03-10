@@ -1,9 +1,12 @@
 import SwiftUI
+import GoogleSignIn
 
 struct ContentView: View {
     
     @State var currentTab: String
     @State var textfieldFocus: FocusState<Bool>.Binding
+    
+    @StateObject var authViewModel = AuthenticationViewModel()
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -29,6 +32,24 @@ struct ContentView: View {
                     SquaresView(textfieldFocus: textfieldFocus)
                 } else if currentTab == "camera.shutter.button" {
                     ImagePicker()
+                } else if currentTab == "person.crop.circle.badge.plus" {
+                    AuthView()
+                      .environmentObject(authViewModel)
+                      .onAppear {
+                        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                          if let user = user {
+                            self.authViewModel.state = .signedIn(user)
+                          } else if let error = error {
+                            self.authViewModel.state = .signedOut
+                            print("There was an error restoring the previous sign-in: \(error)")
+                          } else {
+                            self.authViewModel.state = .signedOut
+                          }
+                        }
+                      }
+                      .onOpenURL { url in
+                        GIDSignIn.sharedInstance.handle(url)
+                      }
                 } else {
                     HStack {
                         Spacer()

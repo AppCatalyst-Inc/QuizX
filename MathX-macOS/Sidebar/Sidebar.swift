@@ -4,7 +4,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image","camera.shutter.button", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image","camera.shutter.button", "gearshape", "person.crop.circle.badge.plus"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -87,6 +87,12 @@ struct Sidebar: View {
                     if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
                         withAnimation {
                             sidebarHoverText(hoverText: "Settings")
+                        }
+                    }
+                } else if image == "person.crop.circle.badge.plus" || image == "person.crop.circle.badge.plus.fill" {
+                    if hoverImage == "person.crop.circle.badge.plus" || hoverImage == "person.crop.circle.badge.plus.fill" {
+                        withAnimation {
+                            sidebarHoverText(hoverText: "GSignIn (DEV)")
                         }
                     }
                 }

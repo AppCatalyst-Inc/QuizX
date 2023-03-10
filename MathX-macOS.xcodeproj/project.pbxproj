@@ -18,6 +18,10 @@
 		6A91E46429BB6D3700BA26DB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6A91E46329BB6D3700BA26DB /* GoogleSignInSwift */; };
 		6A91E46629BB6D7800BA26DB /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E46529BB6D7800BA26DB /* AuthenticationViewModel.swift */; };
 		6A91E46D29BB6F0100BA26DB /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E46C29BB6F0100BA26DB /* UserProfileImageView.swift */; };
+		6A91E47029BB708100BA26DB /* UserProfileImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E46F29BB708100BA26DB /* UserProfileImageLoader.swift */; };
+		6A91E47229BB70BD00BA26DB /* GoogleSignInAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E47129BB70BD00BA26DB /* GoogleSignInAuthenticator.swift */; };
+		6A91E47429BB719E00BA26DB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E47329BB719E00BA26DB /* SignInView.swift */; };
+		6A91E47629BB729500BA26DB /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E47529BB729500BA26DB /* AuthView.swift */; };
 		6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA7D01729AFC286007713D7 /* SquaresView.swift */; };
 		6AA80DDD29B22D5A009D6E81 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DDC29B22D5A009D6E81 /* data.swift */; };
 		6AA80DE029B22D76009D6E81 /* createSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */; };
@@ -35,12 +39,16 @@
 		4992247329BB1BA20046EEAA /* Solve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solve.swift; sourceTree = "<group>"; };
 		49D3DC0329B9BC2900B7CFA7 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		6A141F6B29B9B25000E0212A /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
-		6A4E528729B5B049003A7F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6A4E528829B5B21F003A7F63 /* settingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsView.swift; sourceTree = "<group>"; };
 		6A6846B229AE5A1E0045FE82 /* CreateQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizView.swift; sourceTree = "<group>"; };
 		6A91E45E29BB6D1B00BA26DB /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		6A91E46529BB6D7800BA26DB /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		6A91E46C29BB6F0100BA26DB /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
+		6A91E46F29BB708100BA26DB /* UserProfileImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageLoader.swift; sourceTree = "<group>"; };
+		6A91E47129BB70BD00BA26DB /* GoogleSignInAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInAuthenticator.swift; sourceTree = "<group>"; };
+		6A91E47329BB719E00BA26DB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		6A91E47529BB729500BA26DB /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		6A91E48229BB743200BA26DB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AA7D01729AFC286007713D7 /* SquaresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquaresView.swift; sourceTree = "<group>"; };
 		6AA80DDC29B22D5A009D6E81 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createSquareCard.swift; sourceTree = "<group>"; };
@@ -127,9 +135,10 @@
 		6A91E46729BB6D8300BA26DB /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				6A91E46E29BB707000BA26DB /* Services */,
 				6A91E46B29BB6EE600BA26DB /* Sub-Views */,
 				6A91E46829BB6D8B00BA26DB /* ViewModels */,
-				6A91E45E29BB6D1B00BA26DB /* UserProfileView.swift */,
+				6A91E48529BB78DD00BA26DB /* Views */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -148,6 +157,25 @@
 				6A91E46C29BB6F0100BA26DB /* UserProfileImageView.swift */,
 			);
 			path = "Sub-Views";
+			sourceTree = "<group>";
+		};
+		6A91E46E29BB707000BA26DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6A91E46F29BB708100BA26DB /* UserProfileImageLoader.swift */,
+				6A91E47129BB70BD00BA26DB /* GoogleSignInAuthenticator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6A91E48529BB78DD00BA26DB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A91E45E29BB6D1B00BA26DB /* UserProfileView.swift */,
+				6A91E47329BB719E00BA26DB /* SignInView.swift */,
+				6A91E47529BB729500BA26DB /* AuthView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6AA80DDE29B22D63009D6E81 /* Squares */ = {
@@ -184,15 +212,15 @@
 				6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */,
 				6AABAED429AC9D3700982A2F /* ContentView.swift */,
 				6A91E46729BB6D8300BA26DB /* Authentication */,
-				4992247229BB1B780046EEAA /* Solver (OCR) */,
 				6A141F7229BA15CC00E0212A /* Sidebar */,
+				4992247229BB1B780046EEAA /* Solver (OCR) */,
 				6AA80DDE29B22D63009D6E81 /* Squares */,
 				6A141F6E29BA158900E0212A /* Create Quiz View */,
 				6A141F6F29BA15A500E0212A /* Quiz View */,
 				6A141F7029BA15AD00E0212A /* PDF Notes */,
 				6A141F7129BA15BC00E0212A /* Settings */,
 				6AABAED629AC9D3900982A2F /* Assets.xcassets */,
-				6A4E528729B5B049003A7F63 /* Info.plist */,
+				6A91E48229BB743200BA26DB /* Info.plist */,
 				6AABAEDB29AC9D3900982A2F /* MathX_macOS.entitlements */,
 				6A141F6D29B9B26000E0212A /* PDFs */,
 				6AABAED829AC9D3900982A2F /* Preview Content */,
@@ -292,13 +320,17 @@
 				6A91E46D29BB6F0100BA26DB /* UserProfileImageView.swift in Sources */,
 				6AA80DE229B22D85009D6E81 /* joinSquareCard.swift in Sources */,
 				498B28FF29B8D14100F7F119 /* Notes.swift in Sources */,
+				6A91E47629BB729500BA26DB /* AuthView.swift in Sources */,
 				49D3DC0429B9BC2900B7CFA7 /* QuizView.swift in Sources */,
 				6A91E46629BB6D7800BA26DB /* AuthenticationViewModel.swift in Sources */,
 				6AABAED529AC9D3700982A2F /* ContentView.swift in Sources */,
 				6A91E45F29BB6D1B00BA26DB /* UserProfileView.swift in Sources */,
+				6A91E47429BB719E00BA26DB /* SignInView.swift in Sources */,
+				6A91E47229BB70BD00BA26DB /* GoogleSignInAuthenticator.swift in Sources */,
 				6A4E528929B5B21F003A7F63 /* settingsView.swift in Sources */,
 				6A6846B329AE5A1E0045FE82 /* CreateQuizView.swift in Sources */,
 				4992247429BB1BA20046EEAA /* Solve.swift in Sources */,
+				6A91E47029BB708100BA26DB /* UserProfileImageLoader.swift in Sources */,
 				6AABAED329AC9D3700982A2F /* MathX_macOSApp.swift in Sources */,
 				6AA80DE029B22D76009D6E81 /* createSquareCard.swift in Sources */,
 				6AA7D01829AFC286007713D7 /* SquaresView.swift in Sources */,
