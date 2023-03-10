@@ -24,7 +24,7 @@ struct ContentView: View {
                 } else if currentTab == "doc.text.image" {
                     NotesView()
                 } else if currentTab == "gearshape" {
-                    settingsView()
+                    SettingsView()
                 } else if currentTab == "square.split.bottomrightquarter" {
                     SquaresView(textfieldFocus: textfieldFocus)
                 } else if currentTab == "camera.shutter.button" {
