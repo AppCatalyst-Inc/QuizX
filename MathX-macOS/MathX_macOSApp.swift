@@ -21,7 +21,7 @@ struct MathX_macOSApp: App {
             }
             
             CommandGroup(replacing: .appInfo) {
-                Button("About MathX-macOS") {
+                Button("About QuizX") {
                     NSApplication.shared.orderFrontStandardAboutPanel(
                         options: [
                             NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
