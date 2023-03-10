@@ -4,7 +4,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image","camera.shutter.button", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
@@ -65,12 +65,6 @@ struct Sidebar: View {
                             sidebarHoverText(hoverText: "Create Quiz")
                         }
                     }
-                } else if image == "gearshape" || image == "gearshape.fill" {
-                    if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
-                        withAnimation {
-                            sidebarHoverText(hoverText: "Settings")
-                        }
-                    }
                 } else if image == "square.split.bottomrightquarter" || image == "square.split.bottomrightquarter.fill" {
                     if hoverImage == "square.split.bottomrightquarter" || hoverImage == "square.split.bottomrightquarter.fill" {
                         withAnimation {
@@ -81,6 +75,18 @@ struct Sidebar: View {
                     if hoverImage == "doc.text.image" || hoverImage == "doc.text.image.fill" {
                         withAnimation {
                             sidebarHoverText(hoverText: "Notes")
+                        }
+                    }
+                } else if image == "camera.shutter.button" || image == "camera.shutter.button.fill" {
+                    if hoverImage == "camera.shutter.button" || hoverImage == "camera.shutter.button.fill" {
+                        withAnimation {
+                            sidebarHoverText(hoverText: "Solve Questions")
+                        }
+                    }
+                } else if image == "gearshape" || image == "gearshape.fill" {
+                    if hoverImage == "gearshape" || hoverImage == "gearshape.fill" {
+                        withAnimation {
+                            sidebarHoverText(hoverText: "Settings")
                         }
                     }
                 }

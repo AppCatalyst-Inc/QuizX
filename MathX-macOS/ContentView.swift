@@ -27,6 +27,8 @@ struct ContentView: View {
                     settingsView()
                 } else if currentTab == "square.split.bottomrightquarter" {
                     SquaresView(textfieldFocus: textfieldFocus)
+                } else if currentTab == "camera.shutter.button" {
+                    ImagePicker()
                 } else {
                     HStack {
                         Spacer()
