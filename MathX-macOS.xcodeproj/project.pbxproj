@@ -36,7 +36,7 @@
 		6AA80DDF29B22D76009D6E81 /* createSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createSquareCard.swift; sourceTree = "<group>"; };
 		6AA80DE129B22D85009D6E81 /* joinSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSquareCard.swift; sourceTree = "<group>"; };
 		6AA80DE329B22D9F009D6E81 /* subjectSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subjectSquareCard.swift; sourceTree = "<group>"; };
-		6AABAECF29AC9D3700982A2F /* MathX-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MathX-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AABAECF29AC9D3700982A2F /* QuizX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathX_macOSApp.swift; sourceTree = "<group>"; };
 		6AABAED429AC9D3700982A2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6AABAED629AC9D3900982A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		6AABAED029AC9D3700982A2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6AABAECF29AC9D3700982A2F /* MathX-macOS.app */,
+				6AABAECF29AC9D3700982A2F /* QuizX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,7 +177,7 @@
 			);
 			name = "MathX-macOS";
 			productName = "MathX-macOS";
-			productReference = 6AABAECF29AC9D3700982A2F /* MathX-macOS.app */;
+			productReference = 6AABAECF29AC9D3700982A2F /* QuizX.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -368,7 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -385,7 +385,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppCatalyst.MathX-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuizX;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -397,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -414,7 +415,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppCatalyst.MathX-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuizX;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
