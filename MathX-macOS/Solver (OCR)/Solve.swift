@@ -128,7 +128,6 @@ struct ImagePicker: View {
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Text copied"), dismissButton: .default(Text("OK")))
                 }
-                .navigationTitle("Solver")
             }
             .frame(maxWidth: .infinity, alignment: .center)
             .padding(.bottom, 20)
