@@ -58,12 +58,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4992247229BB1B780046EEAA /* Solver */ = {
+		4992247229BB1B780046EEAA /* Solver (OCR) */ = {
 			isa = PBXGroup;
 			children = (
 				4992247329BB1BA20046EEAA /* Solve.swift */,
 			);
-			path = Solver;
+			path = "Solver (OCR)";
 			sourceTree = "<group>";
 		};
 		6A141F6D29B9B26000E0212A /* PDFs */ = {
@@ -147,7 +147,7 @@
 				6AA80DDC29B22D5A009D6E81 /* data.swift */,
 				6AABAED229AC9D3700982A2F /* MathX_macOSApp.swift */,
 				6AABAED429AC9D3700982A2F /* ContentView.swift */,
-				4992247229BB1B780046EEAA /* Solver */,
+				4992247229BB1B780046EEAA /* Solver (OCR) */,
 				6A141F7229BA15CC00E0212A /* Sidebar */,
 				6AA80DDE29B22D63009D6E81 /* Squares */,
 				6A141F6E29BA158900E0212A /* Create Quiz View */,
@@ -381,11 +381,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MathX-macOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 67PAUT5FCD;
+				DEVELOPMENT_TEAM = DBBLGF84W3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -411,11 +412,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "MathX-macOS/MathX_macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MathX-macOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 67PAUT5FCD;
+				DEVELOPMENT_TEAM = DBBLGF84W3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

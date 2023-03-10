@@ -3,9 +3,14 @@ import Cocoa
 import Vision
 
 struct ImagePicker: View {
+    
     @State private var selectedImage: NSImage?
     @State private var recognizedText: String = ""
-    @State private var showingAlert = false
+    
+    @State private var showingCopiedAlert = false
+    
+    @State private var recognizedTextAlertTitle: String = ""
+    @State private var showingRecongizeTextAlert = false
     
     var body: some View {
         VStack {
@@ -13,30 +18,14 @@ struct ImagePicker: View {
                 Image(nsImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-            } else {
-                Text("No image selected")
             }
             
             Spacer()
             
             HStack {
                 Button(action: {
-                    selectedImage = nil
-                    recognizedText = ""
-                }) {
-                    Text("Clear")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 30)
-                        .padding(.vertical, 10)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                }
-                .buttonStyle(.plain)
-                
-                Button(action: {
                     let dialog = NSOpenPanel()
-                    dialog.allowedFileTypes = ["jpg", "jpeg", "png", "gif"]
+                    dialog.allowedContentTypes = [.jpeg, .png, .gif, .image]
                     
                     if dialog.runModal() == NSApplication.ModalResponse.OK {
                         if let url = dialog.url {
@@ -60,7 +49,8 @@ struct ImagePicker: View {
                         let request = VNRecognizeTextRequest { request, error in
                             guard let observations = request.results as? [VNRecognizedTextObservation],
                                   error == nil else {
-                                self.recognizedText = "Error recognizing text"
+                                self.recognizedTextAlertTitle = "Error recognizing text"
+                                self.showingRecongizeTextAlert = true
                                 return
                             }
                             
@@ -79,10 +69,12 @@ struct ImagePicker: View {
                         do {
                             try requestHandler.perform([request])
                         } catch {
-                            self.recognizedText = "Error recognizing text"
+                            self.recognizedTextAlertTitle = "Error recognizing text"
+                            self.showingRecongizeTextAlert = true
                         }
                     } else {
-                        self.recognizedText = "No image selected"
+                        self.recognizedTextAlertTitle = "No image selected"
+                        self.showingRecongizeTextAlert = true
                     }
                 }) {
                     Text("Recognize Text")
@@ -93,27 +85,21 @@ struct ImagePicker: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
+                .disabled(selectedImage == nil)
                 .buttonStyle(.plain)
+                .alert(isPresented: $showingRecongizeTextAlert) {
+                    Alert(title: Text(recognizedTextAlertTitle), dismissButton: .default(Text("OK")))
+                }
                 
                 Button(action: {
-                    if self.recognizedText.isEmpty {
-                        Text("No text found")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    } else {
+                    if !self.recognizedText.isEmpty {
                         // Copy recognizedText to clipboard
                         let pasteboard = NSPasteboard.general
                         pasteboard.declareTypes([.string], owner: nil)
                         pasteboard.setString(self.recognizedText, forType: .string)
                         
                         // Show alert
-                        self.showingAlert = true
-                        
-                        // Hide alert after 2 seconds
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            self.showingAlert = false
-                        }
+                        self.showingCopiedAlert = true
                     }
                 }) {
                     Text("Copy Text")
@@ -124,11 +110,28 @@ struct ImagePicker: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
+                .disabled(self.recognizedText.isEmpty)
                 .buttonStyle(.plain)
-                .alert(isPresented: $showingAlert) {
+                .alert(isPresented: $showingCopiedAlert) {
                     Alert(title: Text("Text copied"), dismissButton: .default(Text("OK")))
                 }
-                .navigationTitle("Solver")
+                
+                if !(self.recognizedText.isEmpty && selectedImage == nil) {
+                    Button(action: {
+                        selectedImage = nil
+                        recognizedText = ""
+                    }) {
+                        Text("Clear")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 10)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                    }
+                    .disabled(self.recognizedText.isEmpty && selectedImage == nil)
+                    .buttonStyle(.plain)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .center)
             .padding(.bottom, 20)
