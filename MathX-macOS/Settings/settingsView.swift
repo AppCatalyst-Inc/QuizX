@@ -12,8 +12,8 @@ struct SettingsView: View {
                 .font(.system(size: 30))
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, 30)
-                .padding(.leading, 10)
+                .padding(.top, 30)
+                .padding(.leading, 20)
             
             Form {
                 Section(header:
@@ -91,6 +91,7 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .formStyle(.grouped)
         }
+        .padding(.horizontal, 19)
     }
 }
 
