@@ -61,6 +61,7 @@ struct CreateQuizView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
             .listStyle(PlainListStyle())
 
             
