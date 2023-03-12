@@ -16,6 +16,7 @@
 		6A2C1B5329BE338C000002B5 /* AnimatableGradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2C1B5229BE338C000002B5 /* AnimatableGradientModifier.swift */; };
 		6A4E528929B5B21F003A7F63 /* settingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4E528829B5B21F003A7F63 /* settingsView.swift */; };
 		6A6846B329AE5A1E0045FE82 /* CreateQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6846B229AE5A1E0045FE82 /* CreateQuizView.swift */; };
+		6A73B9D029BE45FD0090E250 /* CircleAnimationBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73B9CF29BE45FD0090E250 /* CircleAnimationBG.swift */; };
 		6A91E45F29BB6D1B00BA26DB /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91E45E29BB6D1B00BA26DB /* UserProfileView.swift */; };
 		6A91E46229BB6D3700BA26DB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6A91E46129BB6D3700BA26DB /* GoogleSignIn */; };
 		6A91E46429BB6D3700BA26DB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6A91E46329BB6D3700BA26DB /* GoogleSignInSwift */; };
@@ -47,6 +48,7 @@
 		6A2C1B5229BE338C000002B5 /* AnimatableGradientModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradientModifier.swift; sourceTree = "<group>"; };
 		6A4E528829B5B21F003A7F63 /* settingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsView.swift; sourceTree = "<group>"; };
 		6A6846B229AE5A1E0045FE82 /* CreateQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizView.swift; sourceTree = "<group>"; };
+		6A73B9CF29BE45FD0090E250 /* CircleAnimationBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAnimationBG.swift; sourceTree = "<group>"; };
 		6A91E45E29BB6D1B00BA26DB /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		6A91E46529BB6D7800BA26DB /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		6A91E46C29BB6F0100BA26DB /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				6A2C1B4E29BE2EDC000002B5 /* customRoundedCorner.swift */,
 				6A2C1B5029BE30D8000002B5 /* flatGlassView.swift */,
 				6A2C1B5229BE338C000002B5 /* AnimatableGradientModifier.swift */,
+				6A73B9CF29BE45FD0090E250 /* CircleAnimationBG.swift */,
 			);
 			path = "Custom Modifiers";
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				6AA80DDD29B22D5A009D6E81 /* data.swift in Sources */,
 				6A2C1B4F29BE2EDC000002B5 /* customRoundedCorner.swift in Sources */,
 				6A91E46D29BB6F0100BA26DB /* UserProfileImageView.swift in Sources */,
+				6A73B9D029BE45FD0090E250 /* CircleAnimationBG.swift in Sources */,
 				6AA80DE229B22D85009D6E81 /* joinSquareCard.swift in Sources */,
 				498B28FF29B8D14100F7F119 /* Notes.swift in Sources */,
 				6A91E47629BB729500BA26DB /* AuthView.swift in Sources */,
