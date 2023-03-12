@@ -28,11 +28,27 @@ struct AuthView: View {
             GeometryReader { geometry in
                 VStack {
                     if !isLoggedIn {
-                        GoogleSignInButton(viewModel: vm, action: authViewModel.signIn)
-                            .cornerRadius(30)
-                            .frame(maxWidth: geometry.size.width / 3)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .frame(maxHeight: .infinity, alignment: .center)
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text("Welcome to QuizX!")
+                                .font(.system(size: 48))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            
+                            Text("To continue, please log in using your **SST Email Address**")
+                                .font(.callout)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.bottom)
+                            
+                            GoogleSignInButton(viewModel: vm, action: authViewModel.signIn)
+                                .cornerRadius(30)
+                            
+                            Spacer()
+                        }
+                        .frame(width: geometry.size.width / 3)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(maxHeight: .infinity, alignment: .center)
                     } else {
                         accountInfoCard()
                     }
@@ -165,15 +181,26 @@ struct AuthView: View {
                     Button {
                         exitedSignIn = true
                     } label: {
-                        Text("PROCEED")
-                            .bold()
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .background(.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(14)
-                            .padding(.bottom, 8)
+                        if !userProfile.email.contains(".ssts.edu.sg") && !userProfile.email.contains("sst.edu.sg") {
+                            Text("Please log in using your **SST Email Address.**")
+                                .bold()
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .background(.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(14)
+                                .padding(.bottom, 8)
+                        } else {
+                            Text("PROCEED")
+                                .bold()
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .background(.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(14)
+                                .padding(.bottom, 8)
+                        }
                     }
                     .buttonStyle(.plain)
+                    .disabled(!userProfile.email.contains("ssts.edu.sg") && !userProfile.email.contains("sst.edu.sg"))
                     
                 }
             }
