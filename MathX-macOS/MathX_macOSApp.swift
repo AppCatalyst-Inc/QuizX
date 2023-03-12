@@ -1,4 +1,5 @@
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct MathX_macOSApp: App {
@@ -8,11 +9,62 @@ struct MathX_macOSApp: App {
     
     @State var currentTab: String = "square.split.bottomrightquarter"
     
+    @AppStorage("exitedSignIn", store: .standard) var exitedSignIn = false
+    @AppStorage("isLoggedIn", store: .standard) var isLoggedIn = false
+    @AppStorage("isDarkMode") var isDarkMode = 1
+    
+    @StateObject var authViewModel = AuthenticationViewModel()
+    
+    static let screenWidth = NSScreen.main?.visibleFrame.size.width
+    static let screenHeight = NSScreen.main?.visibleFrame.size.height
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(currentTab: currentTab, textfieldFocus: $textfieldFocus)
-                .focusable(false) // disables tab button from selecting items
-                .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
+            if exitedSignIn {
+                ContentView(currentTab: currentTab, textfieldFocus: $textfieldFocus)
+                    .focusable(false) // disables tab button from selecting items
+                    .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
+                    .frame(minWidth: 1000, minHeight: 800) // sets min width and height constraints for app window
+                    .environmentObject(authViewModel)
+                    .onAppear {
+                        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                            if let user = user {
+                                self.authViewModel.state = .signedIn(user)
+                            } else if let error = error {
+                                self.authViewModel.state = .signedOut
+                                print("There was an error restoring the previous sign-in: \(error)")
+                            } else {
+                                self.authViewModel.state = .signedOut
+                            }
+                        }
+                    }
+                    .onOpenURL { url in
+                        GIDSignIn.sharedInstance.handle(url)
+                    }
+                    .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
+            } else {
+                AuthView()
+                    .focusable(false) // disables tab button from selecting items
+                    .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
+                    .frame(minWidth: 1000, minHeight: 800) // sets min width and height constraints for app window
+                    .environmentObject(authViewModel)
+                    .onAppear {
+                        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                            if let user = user {
+                                self.authViewModel.state = .signedIn(user)
+                            } else if let error = error {
+                                self.authViewModel.state = .signedOut
+                                print("There was an error restoring the previous sign-in: \(error)")
+                            } else {
+                                self.authViewModel.state = .signedOut
+                            }
+                        }
+                    }
+                    .onOpenURL { url in
+                        GIDSignIn.sharedInstance.handle(url)
+                    }
+                    .preferredColorScheme(isDarkMode != 0 ? .dark : .light)
+            }
         }
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowToolbarStyle(UnifiedWindowToolbarStyle())

@@ -1,9 +1,11 @@
 import Foundation
+import SwiftUI
 import GoogleSignIn
 
 /// An observable class for authenticating via Google.
 final class GoogleSignInAuthenticator: ObservableObject {
     private var authViewModel: AuthenticationViewModel
+    @AppStorage("isLoggedIn", store: .standard) var isLoggedIn = false
     
     /// Creates an instance of this authenticator.
     /// - parameter authViewModel: The view model this authenticator will set logged in status on.
@@ -24,7 +26,9 @@ final class GoogleSignInAuthenticator: ObservableObject {
                 print("Error! \(String(describing: error))")
                 return
             }
+            
             self.authViewModel.state = .signedIn(signInResult.user)
+            self.isLoggedIn = true
         }
     }
     
