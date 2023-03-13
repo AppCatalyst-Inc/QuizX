@@ -62,10 +62,11 @@ struct SquaresView: View {
                                         }
                                 }
                                 .padding()
+                                .padding(.bottom, 100) // add this if adding join and create squares buttons view
                             }
                             */
                             
-                            .padding(.bottom, 100)
+                            .padding(.bottom, 100) // remove this if adding join and create squares buttons view
                         }
                     }
                 }
