@@ -18,11 +18,7 @@ struct ContentView: View {
                 }
                 
                 // current view opened
-                if currentTab == "person" {
-                    //
-                } else if currentTab == "pencil.and.ellipsis.rectangle" {
-                    
-                } else if currentTab == "pencil.and.ruler" {
+                if currentTab == "pencil.and.ruler" {
                     CreateQuizView()
                 } else if currentTab == "doc.text.image" {
                     NotesView()

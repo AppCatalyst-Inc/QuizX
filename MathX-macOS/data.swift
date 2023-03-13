@@ -1,5 +1,5 @@
-import Foundation
 import SwiftUI
+import Foundation
 
 struct Square {
     let title: String
@@ -7,9 +7,14 @@ struct Square {
     let colour: Color
 }
 
-// temporary subject squares data
+// subject squares data
 let sqauresCards: [Square] = [
     Square(title: "English", imageName: "books.vertical", colour: .blue),
+    Square(title: "Mother Tongue", imageName: "character.book.closed.zh", colour: .red),
+    Square(title: "Geography", imageName: "mountain.2", colour: .mint),
+    Square(title: "History", imageName: "globe.asia.australia", colour: .teal),
+    Square(title: "CCE", imageName: "building.2", colour: .gray),
+    
     Square(title: "EMath", imageName: "sum", colour: .yellow),
     Square(title: "AMath", imageName: "function", colour: .orange),
     Square(title: "Physics", imageName: "tree", colour: .purple),
@@ -19,11 +24,7 @@ let sqauresCards: [Square] = [
     Square(title: "Electronics", imageName: "bolt", colour: .red),
     Square(title: "Biotechnology", imageName: "pills", colour: .green),
     Square(title: "Design Studies", imageName: "paintbrush.pointed", colour: .pink),
-    Square(title: "Chinese", imageName: "character.book.closed.zh", colour: .red),
     Square(title: "Social Studies", imageName: "person.line.dotted.person", colour: .indigo),
-    Square(title: "Geography", imageName: "mountain.2", colour: .mint),
-    Square(title: "History", imageName: "globe.asia.australia", colour: .teal),
-    Square(title: "CCE", imageName: "building.2", colour: .gray),
     
     Square(title: "Math", imageName: "sum", colour: .yellow),
     Square(title: "Science", imageName: "atom", colour: .green),

@@ -13,7 +13,8 @@ struct AuthView: View {
     
     @AppStorage("exitedSignIn", store: .standard) var exitedSignIn = Bool()
     @AppStorage("isLoggedIn", store: .standard) var isLoggedIn = Bool()
-    
+    @AppStorage("secondaryLevel", store: .standard) var secondaryLevel = Int()
+
     @AppStorage("isDarkMode") var isDarkMode = 1
     
     @Environment(\.colorScheme) var scheme
@@ -183,8 +184,43 @@ struct AuthView: View {
                         .font(.footnote)
                     
                     Button {
-                        withAnimation {
-                            exitedSignIn = true
+                        if userProfile.email.contains(".ssts.edu.sg") || userProfile.email.contains("sst.edu.sg") {
+                            withAnimation {
+                                exitedSignIn = true
+                            }
+                            
+                            if userProfile.email.contains(".ssts.edu.sg") {
+                                
+                                let emailCharArray = Array(userProfile.email)
+                                
+                                let firstEmailDomainPosition = emailCharArray.firstIndex(of: "@")! + 1
+                                
+                                let arrayOfEmailDomain = emailCharArray[firstEmailDomainPosition...firstEmailDomainPosition + 4]
+                                
+                                var emailDomain: String = ""
+                                
+                                arrayOfEmailDomain.forEach { character in
+                                    emailDomain = String(emailDomain) + String(character)
+                                }
+                                       
+                                emailDomain.remove(at: emailDomain.startIndex)
+                                
+                                let yearJoinedSST = Int(emailDomain)!
+                                
+                                
+                                let date = Date()
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "yyyy"
+                                let year = Int(dateFormatter.string(from: date))!
+                                                                
+                                let yearLevel = ((yearJoinedSST - year) * -1) + 1
+                                
+                                secondaryLevel = yearLevel
+                                
+                            } else {
+                                secondaryLevel = 0
+                            }
+                            
                         }
                     } label: {
                         if !userProfile.email.contains(".ssts.edu.sg") && !userProfile.email.contains("sst.edu.sg") {

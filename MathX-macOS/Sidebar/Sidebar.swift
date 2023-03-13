@@ -4,7 +4,7 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image","camera.shutter.button", "gearshape"]
+    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image", "camera.shutter.button", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
