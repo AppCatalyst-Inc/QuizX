@@ -27,8 +27,10 @@ final class GoogleSignInAuthenticator: ObservableObject {
                 return
             }
             
-            self.authViewModel.state = .signedIn(signInResult.user)
-            self.isLoggedIn = true
+            withAnimation {
+                self.authViewModel.state = .signedIn(signInResult.user)
+                self.isLoggedIn = true
+            }
         }
     }
     

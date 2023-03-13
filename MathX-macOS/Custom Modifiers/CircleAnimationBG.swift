@@ -7,7 +7,7 @@ struct Theme {
 
     static func ellipsesTopLeading(forScheme scheme: ColorScheme) -> Color {
         let any = Color(red: 0.039, green: 0.388, blue: 0.502, opacity: 0.81)
-        let dark = Color(red: 0.000, green: 0.176, blue: 0.216, opacity: 80.0)
+        let dark = Color(red: 0.039, green: 0.388, blue: 0.502, opacity: 0.81)
         switch scheme {
         case .light:
             return any

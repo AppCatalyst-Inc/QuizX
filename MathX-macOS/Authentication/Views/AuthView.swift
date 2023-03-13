@@ -18,7 +18,7 @@ struct AuthView: View {
     
     @Environment(\.colorScheme) var scheme
     let blur: CGFloat = 60
-    
+        
     private var user: GIDGoogleUser? {
         return GIDSignIn.sharedInstance.currentUser // retrieves user info
     }
@@ -27,31 +27,35 @@ struct AuthView: View {
         return Group {
             GeometryReader { geometry in
                 VStack {
-                    if !isLoggedIn {
-                        VStack(alignment: .leading) {
-                            Spacer()
-                            Text("Welcome to QuizX!")
-                                .font(.system(size: 48))
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                            
-                            Text("To continue, please log in using your **SST Email Address**")
-                                .font(.callout)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .padding(.bottom)
-                            
-                            GoogleSignInButton(viewModel: vm, action: authViewModel.signIn)
-                                .cornerRadius(30)
-                            
-                            Spacer()
+                    Spacer()
+                    ZStack {
+                        
+                        withAnimation {
+                            accountInfoCard()
+                                .opacity(isLoggedIn ? 1 : 0)
                         }
-                        .frame(width: geometry.size.width / 3)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(maxHeight: .infinity, alignment: .center)
-                    } else {
-                        accountInfoCard()
+                        
+                        if !isLoggedIn {
+                            VStack(alignment: .leading) {
+                                Text("Welcome to QuizX!")
+                                    .font(.system(size: 48))
+                                    .fontWeight(.heavy)
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.bottom)
+                                    .foregroundColor(.white)
+                                
+                                GoogleSignInButton(viewModel: vm, action: authViewModel.signIn)
+                                    .cornerRadius(30)
+                                
+                                
+                            }
+                            .frame(width: geometry.size.width / 3)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .frame(maxHeight: .infinity, alignment: .center)
+                            
+                        }
                     }
+                    Spacer()
                 }
                 .padding(.horizontal, 50)
                 .background(
@@ -131,10 +135,11 @@ struct AuthView: View {
                         
                         VStack {
                             Button {
-                                authViewModel.signOut()
-                                isLoggedIn = false
-                                exitedSignIn = false
-                                
+                                withAnimation {
+                                    authViewModel.signOut()
+                                    isLoggedIn = false
+                                    exitedSignIn = false
+                                }
                             } label: {
                                 HStack {
                                     Image(systemName: "person.crop.circle.badge.xmark")
@@ -151,7 +156,6 @@ struct AuthView: View {
                     
                     Divider()
                         .padding()
-                    
                     
                     HStack(spacing: 12) {
                         UserProfileImageView(userProfile: userProfile)
@@ -179,7 +183,9 @@ struct AuthView: View {
                         .font(.footnote)
                     
                     Button {
-                        exitedSignIn = true
+                        withAnimation {
+                            exitedSignIn = true
+                        }
                     } label: {
                         if !userProfile.email.contains(".ssts.edu.sg") && !userProfile.email.contains("sst.edu.sg") {
                             Text("Please log in using your **SST Email Address.**")
@@ -190,7 +196,10 @@ struct AuthView: View {
                                 .cornerRadius(14)
                                 .padding(.bottom, 8)
                         } else {
-                            Text("PROCEED")
+                            HStack {
+                                Text("Proceed to QuizX")
+                                Image(systemName: "arrow.right")
+                            }
                                 .bold()
                                 .frame(maxWidth: .infinity, maxHeight: 50)
                                 .background(.blue)

@@ -18,6 +18,8 @@ struct MathX_macOSApp: App {
     static let screenWidth = NSScreen.main?.visibleFrame.size.width
     static let screenHeight = NSScreen.main?.visibleFrame.size.height
     
+    let transition = AnyTransition.asymmetric(insertion: .slide, removal: .scale).combined(with: .opacity)
+    
     var body: some Scene {
         WindowGroup {
             if exitedSignIn {
@@ -31,10 +33,18 @@ struct MathX_macOSApp: App {
                             if let user = user {
                                 self.authViewModel.state = .signedIn(user)
                             } else if let error = error {
-                                self.authViewModel.state = .signedOut
+                                withAnimation {
+                                    self.authViewModel.state = .signedOut
+                                    isLoggedIn = false
+                                    exitedSignIn = false
+                                }
                                 print("There was an error restoring the previous sign-in: \(error)")
                             } else {
-                                self.authViewModel.state = .signedOut
+                                withAnimation {
+                                    self.authViewModel.state = .signedOut
+                                    isLoggedIn = false
+                                    exitedSignIn = false
+                                }
                             }
                         }
                     }
@@ -53,17 +63,25 @@ struct MathX_macOSApp: App {
                             if let user = user {
                                 self.authViewModel.state = .signedIn(user)
                             } else if let error = error {
-                                self.authViewModel.state = .signedOut
+                                withAnimation {
+                                    self.authViewModel.state = .signedOut
+                                    isLoggedIn = false
+                                    exitedSignIn = false
+                                }
                                 print("There was an error restoring the previous sign-in: \(error)")
                             } else {
-                                self.authViewModel.state = .signedOut
+                                withAnimation {
+                                    self.authViewModel.state = .signedOut
+                                    isLoggedIn = false
+                                    exitedSignIn = false
+                                }
                             }
                         }
                     }
                     .onOpenURL { url in
                         GIDSignIn.sharedInstance.handle(url)
                     }
-                    .preferredColorScheme(isDarkMode != 0 ? .dark : .light)
+                    .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
             }
         }
         .windowStyle(HiddenTitleBarWindowStyle())

@@ -56,9 +56,11 @@ struct SettingsView: View {
                                 Spacer()
                                 
                                 Button {
-                                    authViewModel.signOut()
-                                    isLoggedIn = false
-                                    exitedSignIn = false
+                                    withAnimation {
+                                        authViewModel.signOut()
+                                        isLoggedIn = false
+                                        exitedSignIn = false
+                                    }
                                 } label: {
                                     HStack {
                                         Image(systemName: "person.crop.circle.badge.xmark")
@@ -113,9 +115,11 @@ struct SettingsView: View {
                 .formStyle(.grouped)
             } else {
                 Button {
-                    authViewModel.signOut()
-                    isLoggedIn = false
-                    exitedSignIn = false
+                    withAnimation {
+                        authViewModel.signOut()
+                        isLoggedIn = false
+                        exitedSignIn = false
+                    }
                 } label: {
                     Text("An error occurred while trying to retrieve your account's information. Log out.")
                 }
