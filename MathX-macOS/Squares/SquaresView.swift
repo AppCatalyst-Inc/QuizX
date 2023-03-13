@@ -7,7 +7,12 @@ struct SquaresView: View {
     @State var search = String()
         
     @State var textfieldFocus: FocusState<Bool>.Binding
+
+    @State var squaresCards = [Square]()
+    
     @Environment(\.colorScheme) var colorScheme
+    
+    @AppStorage("secondaryLevel", store: .standard) var secondaryLevel = Int()
         
     var body: some View {
         VStack(spacing: 15) {
@@ -66,13 +71,16 @@ struct SquaresView: View {
         }
         .padding(.horizontal, 30)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .onAppear {
+            squaresCards = secondaryLevel == 0 ? sqauresCardsTotal : secondaryLevel > 2 ? sqauresCardsUpper : sqauresCardsLower
+        }
     }
     
     var searchResults: [Square] {
         if search.isEmpty {
-            return sqauresCards
+            return squaresCards
         } else {
-            return sqauresCards.filter { $0.title.uppercased().starts(with: search.uppercased()) }
+            return squaresCards.filter { $0.title.uppercased().starts(with: search.uppercased()) }
         }
     }
     
