@@ -238,31 +238,31 @@ struct AuthView: View {
     
     func checkSecondaryLevel() {
         if let userProfile = user?.profile {
-            let emailCharArray = Array(userProfile.email)
+            let emailCharArray = Array(userProfile.email) // converts string of email address into array of characters
             
-            let firstEmailDomainPosition = emailCharArray.firstIndex(of: "@")! + 1
+            let firstEmailDomainPosition = emailCharArray.firstIndex(of: "@")! + 1 // gets position of @ symbol + 1 (output: s2021.ssts.edu.sg)
             
-            let arrayOfEmailDomain = emailCharArray[firstEmailDomainPosition...firstEmailDomainPosition + 4]
+            let arrayOfEmailDomain = emailCharArray[firstEmailDomainPosition...firstEmailDomainPosition + 4] // gets first 5 characters (output: s2021)
             
-            var emailDomain: String = ""
+            var emailDomain: String = "" // initialises emailDomain var for emailDomain (emailDomain = s2021 etc.)
             
             arrayOfEmailDomain.forEach { character in
-                emailDomain = String(emailDomain) + String(character)
+                emailDomain = String(emailDomain) + String(character) // adds characters together to form a string
             }
             
-            emailDomain.remove(at: emailDomain.startIndex)
+            emailDomain.remove(at: emailDomain.startIndex) // removes "s" in s2021
             
-            let yearJoinedSST = Int(emailDomain)!
+            let yearJoinedSST = Int(emailDomain)! // turns string 2021 into int 2021
             
-            
+            // gets current year
             let date = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy"
             let year = Int(dateFormatter.string(from: date))!
             
-            let yearLevel = ((yearJoinedSST - year) * -1) + 1
+            let yearLevel = ((yearJoinedSST - year) * -1) + 1 // gets secondary level
             
-            secondaryLevel = yearLevel
+            secondaryLevel = yearLevel // sets @appstorage secondaryLevel to yearLevel
         }
     }
 }
