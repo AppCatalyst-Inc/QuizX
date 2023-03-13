@@ -10,6 +10,8 @@ struct SettingsView: View {
     
     @AppStorage("notificationsEnabled", store: .standard) private var notificationsEnabled = Bool()
     
+    @AppStorage("secondaryLevel", store: .standard) var secondaryLevel = Int()
+    
     @AppStorage("isDarkMode") var isDarkMode = 1
     
     private var user: GIDGoogleUser? {
@@ -110,6 +112,45 @@ struct SettingsView: View {
                             .pickerStyle(SegmentedPickerStyle())
                         }
                     }
+                    
+                    if userProfile.email == "chay_yu_hung@s2021.ssts.edu.sg" || userProfile.email == "aathithya_j@s2021.ssts.edu.sg" || userProfile.email == "sairam_suresh@s2021.ssts.edu.sg" || userProfile.email == "kavin_jayakumar@s2021.ssts.edu.sg" {
+                        Section(header:
+                                    HStack {
+                            Image(systemName: "hammer")
+                            
+                            Text("Developer Settings")
+                        }
+                            .font(.title3)
+                            .fontWeight(.bold)
+                                
+                                , footer:
+                                    Text("Developer settings are only available for AppCatalyst Inc employee's SST email accounts.")
+                            .fontWeight(.bold)
+                            .font(.subheadline)
+                        ) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Menu("Change secondary level (secondaryLevel value: \(secondaryLevel))") {
+                                    Button(action: {secondaryLevel = 0}, label: {
+                                        Text("Teacher View (sst.edu.sg)")
+                                    })
+                                    Button(action: {secondaryLevel = 1}, label: {
+                                        Text("Secondary 1")
+                                    })
+                                    Button(action: {secondaryLevel = 2}, label: {
+                                        Text("Secondary 2")
+                                    })
+                                    Button(action: {secondaryLevel = 3}, label: {
+                                        Text("Secondary 3")
+                                    })
+                                    Button(action: {secondaryLevel = 4}, label: {
+                                        Text("Secondary 4")
+                                    })
+                                }
+                                Text("*Secondary level resets when you sign in again")
+                            }
+                        }
+                    }
+                    
                 }
                 .scrollContentBackground(.hidden)
                 .formStyle(.grouped)
