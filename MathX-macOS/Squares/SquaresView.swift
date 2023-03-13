@@ -42,6 +42,7 @@ struct SquaresView: View {
                             }
                             .padding()
                             
+                            /*
                             if search.isEmpty {
                                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: Int(floor((geometry.size.width - 70) / cardWidth))), spacing: 30) {
                                     joinSquareCard(cardWidth: cardWidth)
@@ -63,6 +64,7 @@ struct SquaresView: View {
                                 .padding()
                                 .padding(.bottom, 100)
                             }
+                            */
                         }
                     }
                 }
