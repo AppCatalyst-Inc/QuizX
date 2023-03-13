@@ -7,20 +7,20 @@ struct CreateQuizView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Create a Quiz")
-                .font(.title)
+            Text("Create Quiz")
+                .font(.system(size: 30))
                 .fontWeight(.bold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 10)
 
             TextField("Quiz Title", text: $quiz.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Toggle("Time Mode       ", isOn: $isTimed)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
-                .padding(.leading, 10)
-            
+
             Toggle("Multiple Choice", isOn: $is4option)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
-                .padding(.leading, 10)
 
             Divider()
             
@@ -82,6 +82,7 @@ struct CreateQuizView: View {
             }
         }
         .padding(20)
+        .padding(.horizontal, 20)
     }
     
     func saveQuiz() {
