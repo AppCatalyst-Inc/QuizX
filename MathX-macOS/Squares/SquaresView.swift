@@ -50,7 +50,7 @@ struct SquaresView: View {
                                         .padding()
                                         .onTapGesture {
                                             print("joinSquare tapped")
-                                            // code to be executed when button is pressed
+                                             //code to be executed when button is pressed
                                         }
                                     
                                     createSquareCard(cardWidth: cardWidth)
@@ -58,13 +58,14 @@ struct SquaresView: View {
                                         .padding()
                                         .onTapGesture {
                                             print("createSquare tapped")
-                                            // code to be executed when button is pressed
+                                             //code to be executed when button is pressed
                                         }
                                 }
                                 .padding()
-                                .padding(.bottom, 100)
                             }
                             */
+                            
+                            .padding(.bottom, 100)
                         }
                     }
                 }
