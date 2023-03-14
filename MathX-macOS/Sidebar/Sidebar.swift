@@ -4,17 +4,20 @@ struct Sidebar: View {
     
     @Binding var currentTab: String
     
-    @State var tabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image", "camera.shutter.button", "gearshape"]
+    @State var studentTabs: Array = ["square.split.bottomrightquarter", "doc.text.image", "camera.shutter.button", "gearshape"]
+    @State var teacherTabs: Array = ["square.split.bottomrightquarter", "pencil.and.ruler", "doc.text.image", "camera.shutter.button", "gearshape"]
     @State var hoverImage = ""
     @Environment(\.colorScheme) var colorScheme
     
     @Namespace var animation
     
+    @AppStorage("secondaryLevel", store: .standard) var secondaryLevel = Int()
+    
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
                 Spacer()
-                ForEach(tabs, id: \.self) { image in
+                ForEach(secondaryLevel == 0 ? teacherTabs : studentTabs, id: \.self) { image in
                     MenuButton(image: image)
                         .onHover { state in
                             withAnimation(.spring(response: 0.2)) {
