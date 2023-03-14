@@ -50,7 +50,15 @@ struct AuthView: View {
                                 
                                 
                             }
-                            .frame(width: geometry.size.width / 3)
+                            .padding()
+                            .padding(.vertical)
+                            .background(.ultraThinMaterial)
+                            .foregroundColor(Color.primary.opacity(0.8))
+                            .foregroundStyle(.ultraThinMaterial)
+                            .cornerRadius(16)
+                            .padding()
+                            .frame(width: geometry.size.width / 2)
+                            .frame(height: 120)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .frame(maxHeight: .infinity, alignment: .center)
                             
