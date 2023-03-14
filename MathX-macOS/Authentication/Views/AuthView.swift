@@ -188,8 +188,8 @@ struct AuthView: View {
                     Divider()
                         .padding()
                     
-                    Text("By proceeding you accept our **Terms of Service** and **Privacy Policy**")
-                        .font(.footnote)
+//                    Text("By proceeding you accept our **Terms of Service** and **Privacy Policy**")
+//                        .font(.footnote)
                     
                     Button {
                         if userProfile.email.contains(".ssts.edu.sg") || userProfile.email.contains("sst.edu.sg") {
