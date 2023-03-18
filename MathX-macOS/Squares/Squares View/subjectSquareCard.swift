@@ -20,10 +20,8 @@ struct subjectSquareCard: View {
                 shortcutButton(buttonTitle: "Quizzes", imageName: "doc.richtext", animationid: "quizzesAnimation")
                     .padding(.leading, 10)
                     .onTapGesture {
-                        withAnimation(.spring(response: 1, dampingFraction: 1)) {
-                            print("\(square.title) - quizzes tapped")
-                            showingSubjectQuizSelectionView.toggle()
-                        }
+                        print("\(square.title) - quizzes tapped")
+                        showingSubjectQuizSelectionView.toggle()
                     }
                 
                 shortcutButton(buttonTitle: "Notes", imageName: "doc.text", animationid: "notesAnimation")
@@ -91,10 +89,11 @@ struct subjectSquareCard: View {
         }
         .padding(.horizontal, hovering ? 15 : 0)
         .sheet(isPresented: $showingSubjectQuizSelectionView) {
-            subjectQuizSelectionView(subject: square)
-                .focusable(false)
-                .transition(.move(edge: .bottom))
-                .frame(width: geometry.size.width / 2, height: geometry.size.height / 1.5)
+            withAnimation(.spring()) {
+                subjectQuizSelectionView(subject: square)
+                    .focusable(false)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
         }
     }
     

@@ -3,7 +3,7 @@ import SwiftUI
 struct subjectQuizSelectionView: View {
     
     let subject: Square
-    
+        
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
     
@@ -12,7 +12,7 @@ struct subjectQuizSelectionView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     
-                    // Toolbar
+                    // Toolbar start
                     HStack {
                         Text(subject.title) // title
                             .font(.system(size: 30))
@@ -25,9 +25,7 @@ struct subjectQuizSelectionView: View {
                         Spacer()
                         
                         Button { // dismiss button
-                            withAnimation(.spring(response: 1, dampingFraction: 1)) {
-                                presentationMode.wrappedValue.dismiss()
-                            }
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
                             Image(systemName: "xmark")
                                 .font(.title3)
@@ -39,6 +37,7 @@ struct subjectQuizSelectionView: View {
                         .padding(.trailing, 10)
                     }
                     .padding(.top)
+                    // Toolbar end
                     
                     Text("lorem ipsum")
                     // quizzes go here
