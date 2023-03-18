@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SquaresView: View {
     
+    let geometry: GeometryProxy
+    
     let cardWidth = CGFloat(285)
     
     @State var search = String()
@@ -9,6 +11,7 @@ struct SquaresView: View {
     @State var textfieldFocus: FocusState<Bool>.Binding
 
     @State var squaresCards = [Square]()
+    
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -36,7 +39,7 @@ struct SquaresView: View {
                         ScrollView(showsIndicators: false) {
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: Int(floor((geometry.size.width - 70) / cardWidth))), spacing: 30) {
                                 ForEach(searchResults, id: \.title) { square in
-                                    subjectSquareCard(square: square, cardWidth: cardWidth)
+                                    subjectSquareCard(square: square, geometry: geometry, cardWidth: cardWidth)
                                         .padding(.horizontal)
                                 }
                             }

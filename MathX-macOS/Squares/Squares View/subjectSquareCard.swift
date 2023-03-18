@@ -2,6 +2,7 @@ import SwiftUI
 
 struct subjectSquareCard: View {
     let square: Square
+    let geometry: GeometryProxy
     let cardWidth: CGFloat
     
     @State var hovering = Bool()
@@ -10,6 +11,8 @@ struct subjectSquareCard: View {
     
     @Namespace var animation
     
+    @State var showingSubjectQuizSelectionView = false
+    
     var body: some View {
         VStack(alignment: .center) {
             
@@ -17,8 +20,10 @@ struct subjectSquareCard: View {
                 shortcutButton(buttonTitle: "Quizzes", imageName: "doc.richtext", animationid: "quizzesAnimation")
                     .padding(.leading, 10)
                     .onTapGesture {
-                        print("\(square.title) - quizzes tapped")
-                        // code to be executed when button is pressed
+                        withAnimation(.spring(response: 1, dampingFraction: 1)) {
+                            print("\(square.title) - quizzes tapped")
+                            showingSubjectQuizSelectionView.toggle()
+                        }
                     }
                 
                 shortcutButton(buttonTitle: "Notes", imageName: "doc.text", animationid: "notesAnimation")
@@ -85,6 +90,12 @@ struct subjectSquareCard: View {
             }
         }
         .padding(.horizontal, hovering ? 15 : 0)
+        .sheet(isPresented: $showingSubjectQuizSelectionView) {
+            subjectQuizSelectionView(subject: square)
+                .focusable(false)
+                .transition(.move(edge: .bottom))
+                .frame(width: geometry.size.width / 2, height: geometry.size.height / 1.5)
+        }
     }
     
     @ViewBuilder
