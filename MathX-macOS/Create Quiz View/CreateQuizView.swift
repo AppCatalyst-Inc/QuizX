@@ -10,6 +10,7 @@ struct CreateQuizView: View {
             Text("Create Quiz")
                 .font(.system(size: 30))
                 .fontWeight(.bold)
+                .padding(.top, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom)
 

@@ -25,7 +25,7 @@ struct SquaresView: View {
                         Text("Squares") // title
                             .font(.system(size: 30))
                             .fontWeight(.bold)
-                            .padding(.vertical, 20)
+                            .padding(.vertical, 30)
                             .padding(.leading, 10)
                         
                         Spacer()
