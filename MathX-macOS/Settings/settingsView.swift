@@ -25,7 +25,7 @@ struct SettingsView: View {
                     .font(.system(size: 30))
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 30)
+                    .padding(.top, 20)
                     .padding(.leading, 20)
                 
                 Form {

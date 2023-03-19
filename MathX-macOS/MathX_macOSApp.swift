@@ -52,6 +52,11 @@ struct MathX_macOSApp: App {
                         GIDSignIn.sharedInstance.handle(url)
                     }
                     .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Text("")
+                        }
+                    }
             } else {
                 AuthView()
                     .focusable(false) // disables tab button from selecting items
@@ -82,6 +87,11 @@ struct MathX_macOSApp: App {
                         GIDSignIn.sharedInstance.handle(url)
                     }
                     .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Text("")
+                        }
+                    }
             }
         }
         .windowStyle(HiddenTitleBarWindowStyle())

@@ -11,7 +11,6 @@ struct CreateQuizView: View {
                 .font(.system(size: 30))
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 10)
                 .padding(.bottom)
 
             TextField("Quiz Title", text: $quiz.title)
