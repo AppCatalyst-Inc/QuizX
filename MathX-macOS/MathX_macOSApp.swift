@@ -4,7 +4,7 @@ import GoogleSignIn
 @main
 struct MathX_macOSApp: App {
     
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @FocusState var textfieldFocus
     
     @State var currentTab: String = "square.split.bottomrightquarter"
@@ -15,8 +15,8 @@ struct MathX_macOSApp: App {
     
     @StateObject var authViewModel = AuthenticationViewModel()
     
-    static let screenWidth = NSScreen.main?.visibleFrame.size.width
-    static let screenHeight = NSScreen.main?.visibleFrame.size.height
+    static let screenWidth = UIScreen.main.bounds.width
+    static let screenHeight = UIScreen.main.bounds.height
     
     let transition = AnyTransition.asymmetric(insertion: .slide, removal: .scale).combined(with: .opacity)
     
@@ -24,7 +24,6 @@ struct MathX_macOSApp: App {
         WindowGroup {
             if exitedSignIn {
                 ContentView(currentTab: currentTab, textfieldFocus: $textfieldFocus)
-                    .focusable(false) // disables tab button from selecting items
                     .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
                     .frame(minWidth: 1000, minHeight: 800) // sets min width and height constraints for app window
                     .environmentObject(authViewModel)
@@ -54,7 +53,6 @@ struct MathX_macOSApp: App {
                     .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
             } else {
                 AuthView()
-                    .focusable(false) // disables tab button from selecting items
                     .background(Color("BG").ignoresSafeArea()) // sets bg colour to cover title bar / toolbar too
                     .frame(minWidth: 1000, minHeight: 800) // sets min width and height constraints for app window
                     .environmentObject(authViewModel)
@@ -84,36 +82,15 @@ struct MathX_macOSApp: App {
                     .preferredColorScheme(isDarkMode == 0 ? .dark : .light)
             }
         }
-        .windowStyle(HiddenTitleBarWindowStyle())
-        .windowToolbarStyle(UnifiedWindowToolbarStyle())
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) { // removes option to add new windows with command N or through menu bar
-            }
-            
-            CommandGroup(replacing: .appInfo) {
-                Button("About QuizX") {
-                    NSApplication.shared.orderFrontStandardAboutPanel(
-                        options: [
-                            NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
-                                string: "Developers: Aathithya Jegatheesan, Tristan Chay, Sairam Suresh, and Kavin Jayakumar",
-                                attributes: [
-                                    NSAttributedString.Key.font: NSFont.boldSystemFont(
-                                        ofSize: NSFont.smallSystemFontSize)
-                                ]
-                            ),
-                            NSApplication.AboutPanelOptionKey(
-                                rawValue: "Copyright"
-                            ): "© 2023 AppCatalyst Inc., a company in SST Inc."
-                        ]
-                    )
-                }
             }
         }
     }
 }
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
+class AppDelegate: NSObject, UIApplicationDelegate {
+    private func applicationDidFinishLaunching(_ notification: Notification) {
+        
     }
 }

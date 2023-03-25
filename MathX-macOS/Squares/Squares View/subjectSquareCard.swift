@@ -91,7 +91,6 @@ struct subjectSquareCard: View {
         .sheet(isPresented: $showingSubjectQuizSelectionView) {
             withAnimation(.spring()) {
                 subjectQuizSelectionView(subject: square)
-                    .focusable(false)
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }

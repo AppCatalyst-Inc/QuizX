@@ -119,9 +119,11 @@ struct SquaresView: View {
                 .font(.headline)
                 .fontWeight(.bold)
                 .focused(textfieldFocus)
+            #if os(macOS)
                 .onExitCommand {
                     textfieldFocus.wrappedValue = false // unfocuses search field when escape key is pressed
                 }
+            #endif
                 .onSubmit {
                     textfieldFocus.wrappedValue = false // unfocuses search field when enter key is pressed
                 }

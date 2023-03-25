@@ -37,10 +37,10 @@ struct Sidebar: View {
             .frame(maxHeight: .infinity, alignment: .top)
             .background( // sidebar rounding (top right and bottom right)
                 ZStack {
-                    Color(NSColor.windowBackgroundColor)
+                    Color(UIColor.systemBackground)
                         .padding(.trailing, 30)
                     
-                    Color(NSColor.windowBackgroundColor)
+                    Color(UIColor.systemBackground)
                         .cornerRadius(20)
                         .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.4 : 0.2), radius: 5, x: 5, y: 0)
                 }

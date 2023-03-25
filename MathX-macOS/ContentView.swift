@@ -22,7 +22,7 @@ struct ContentView: View {
                     if currentTab == "pencil.and.ruler" {
                         CreateQuizView()
                     } else if currentTab == "doc.text.image" {
-                        NotesView()
+//                        NotesView()
                     } else if currentTab == "gearshape" {
                         SettingsView()
                     } else if currentTab == "square.split.bottomrightquarter" {
@@ -30,7 +30,7 @@ struct ContentView: View {
                             SquaresView(geometry: geometry, textfieldFocus: textfieldFocus)
                         }
                     } else if currentTab == "camera.shutter.button" {
-                        ImagePicker()
+//                        ImagePicker()
                     } else {
                         HStack {
                             Spacer()
